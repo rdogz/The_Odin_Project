@@ -1,0 +1,45 @@
+/* styles.css */
+/**/
+
+/* Universal selector */
+* {
+    color: purple;
+}
+
+/* Type selector */
+
+div {
+    color: white;
+}
+
+/* Class selector */
+.alert-text {
+    color: red;
+}
+
+#title {
+    background-color: red;
+}
+
+.read,
+.unread {
+    color: white;
+    background-color: black;
+}
+
+.read {
+    /* several unique declarations */
+}
+
+.unread {
+    /* several unique declarations */
+}
+
+/* chaining selectors */
+.subsection.header {
+    color: red;
+}
+
+.ancestor .contents {
+    /* some declarations */
+}
