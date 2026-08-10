@@ -1,0 +1,62 @@
+* {
+    background-color: black;
+    font-family: 'Times New Roman', serif;
+}
+
+img {
+    border-radius: 10px;
+}
+
+figcaption {
+    color: grey;
+}
+
+figcaption a {
+    font-size: 16px;
+    text-decoration: none;
+    color: grey;
+    border-radius: 5px;
+}
+
+figcaption a:hover {
+    color: black;
+    background-color: grey;
+}
+
+.header {
+    margin: 20px;
+    color: grey;
+
+}
+
+.recipes {
+    background-color: black;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: grey;
+    margin: 10px;
+}
+
+.nav-bar-item {
+    margin: 10px;
+    display: inline-block;
+}
+
+.recipe-li {
+    margin: 20px;
+}
+
+.recipes-item {
+    color: black;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 50px;
+    background-color: grey;
+    padding: 5px;
+    margin: 10px;
+}
+
+.recipes-item:hover {
+    color: grey;
+    background-color: black;
+}
