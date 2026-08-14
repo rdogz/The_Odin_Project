@@ -1,5 +1,19 @@
+const NUMBERS_TO_GENERATE = 3;
+
+const playerChoice = document.getElementById("player-choices");
+const playerId = document.getElementById("computer");
+const computerId = document.getElementById("player");
+
+playerChoice.addEventListener("click", (event) => {
+    if (event.target.matches('button[type="button"]')) {
+        event.preventDefault();
+        const choice = event.target.value;
+        console.log(choice);
+    }
+})
+
 function getRandomInt() {
-  return Math.floor(Math.random() * 3);
+  return Math.floor(Math.random() * NUMBERS_TO_GENERATE);
 }
 
 function getComputerChoice() {
@@ -22,6 +36,8 @@ function getHumanChoice() {
     return prompt("Your choice: ");
 }
 
+
+
 function playGame() {
 
     let humanScore = 0;
@@ -29,7 +45,6 @@ function playGame() {
 
     let humanSelection = "";
     let computerSelection = "";
-    let gameResult = 0;
 
     function playRound(humanChoice, computerChoice) {
         if (humanChoice == computerChoice) {
@@ -77,12 +92,10 @@ function playGame() {
         }
     }
 
-    for (let i = 0; i < 5; i++) {
-        humanSelection = getHumanChoice();
-        computerSelection = getComputerChoice();
+    humanSelection = getHumanChoice();
+    computerSelection = getComputerChoice();
 
-        playRound(humanSelection, computerSelection);
-        }
+    playRound(humanSelection, computerSelection);
 
     console.log("\nGame result:")
     if (humanScore > computerScore) {
@@ -93,5 +106,7 @@ function playGame() {
         console.log("\tNo winners or losers here! It's a tie!");
     }
 
-    return;
+    if (humanScore > 4 || computerScore > 4) {
+        // render winner
+    }
 }
