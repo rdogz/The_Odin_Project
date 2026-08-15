@@ -1,0 +1,42 @@
+.btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 16px;
+}
+
+button {
+    border-radius: 5px;
+    border-color: grey;
+    border-style: dotted;
+    color: black;
+    background-color: white;
+}
+
+button:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    border: solid red;
+    height: 90dvh;
+}
+
+div div {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border: solid black;
+}
+
+
+div div div {
+    border: solid blue;
+}
