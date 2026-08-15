@@ -6,6 +6,13 @@
     margin: 16px;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 button {
     border-radius: 5px;
     border-color: grey;
@@ -25,18 +32,17 @@ button:hover {
     justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
-    border: solid red;
-    height: 90dvh;
+    width: 90vmin;
+    height: 90vmin;
+    aspect-ratio: 1 / 1;
 }
 
 div div {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    border: solid black;
 }
 
-
 div div div {
-    border: solid blue;
+    border: 0.1px solid black;
 }
