@@ -1,0 +1,86 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calculator {
+    background-color: lightpink;
+    display: flex;
+    border-radius: 5%;
+    padding: 10px;
+    width: 50dvh;
+    height: 70dvh;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+.display {
+    display: flex;
+    background-color: seagreen;
+    border: solid black;
+    border-radius: 10px;
+    width: 80%;
+    height: 15%;
+    margin-top: 48px;
+    margin-bottom: 24px;
+    padding: 16px;
+    font-size: 48px;
+    font-weight: bold;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.buttons {
+    display: flex;
+    background-color: pink;
+    border-radius: 10%;
+    gap: 8px;
+    width: 80%;
+    height: 100%;
+    margin-top: 24px;
+    padding: 16px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.row {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-content: space-between;
+    justify-content: center;
+    gap: 8px;
+}
+
+button {
+    aspect-ratio: 1/1;
+    background-color: lightpink;
+    border-color: lightgrey;
+    color: brown;
+    border-radius: 50%;
+    font-size: 36px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.operation {
+    background-color: hotpink;
+}
+
+#delete,
+#clear {
+    border-radius: 10px;
+    aspect-ratio: 2/1;
+    padding: 12px;
+}
+
+#clear {
+    background-color: deeppink;
+    margin-left: 24px;
+}
