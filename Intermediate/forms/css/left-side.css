@@ -1,0 +1,58 @@
+@font-face {
+    font-family: "Norse Regular";
+    src: url('../fonts/Norse.otf');
+}
+
+
+.left-div {
+    display: flex;
+    min-height: 100vh;
+    max-width: 40vw;
+}
+
+.img {
+    min-height: 100vh;
+    width: 40%;
+    background: center / cover no-repeat url(../images/bg.jpg);
+}
+
+.logo-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    top: 30%;
+    left: 0;
+    height: 20vh;
+    width: 40%;
+    position: absolute;
+}
+
+.logo-div div:first-child {
+    background: right / contain no-repeat url(../images/odin-lined.png);
+    height: 80%;
+    width: 40%;
+}
+
+.logo-div div:last-child {
+    font-family: "Norse Regular";
+    font-size: 8rem;
+    width: 40%;
+    color: white;
+    font-weight: bold;
+}
+
+footer {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 40%;
+
+    text-align: center;
+    color: gainsboro;
+}
+
+a {
+    color: white;
+}
