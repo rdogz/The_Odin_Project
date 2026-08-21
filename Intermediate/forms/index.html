@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title></title>
         <link href="css/left-side.css" rel="stylesheet">
-        <link href="css/style.css" rel="stylesheet">
+        <link href="css/right-side.css" rel="stylesheet">
         <link href="css/reset.css" rel="stylesheet">
     </head>
     <body>
@@ -13,16 +13,49 @@
             <div class="logo-div">
                 <div></div>
                 <div>Odin</div>
-                
             </div>
-            <div class="img"></div>
+            <img src="./images/bg.jpg" alt="Palm tree">
             <footer>
                 Photo by <em><a href="https://unsplash.com/@haliewestphoto" noreferer target="blank">Halie West</a></em> on <em><a href="https://unsplash.com" noreferer target="blank">unsplash</a></em>. 
             </footer>
         </div>
         <div class="right-side">
-            
+            <div class="top-text">This is not a real online service! You know you need something like this in your life to help you realize your deepest dreams. Sign up <em>now</em> to get started</div>
+            <div class="middle">
+                <div class="header">
+                    <h2>Let's do this!</h2>
+                </div>
+                <form>
+                    <div>
+                        <p>First name</p>
+                        <input type="text" name="first_name"> 
+                    </div>
+                    <div>
+                        <p>Last name</p>
+                        <input type="text" name="last_name"> 
+                    </div>
+                    <div>
+                        <p>Email</p>
+                        <input type="email" name="email" required> 
+                    </div>
+                    <div>
+                        <p>Phone number</p>
+                        <input type="tel" name="phone" pattern="^(\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}$"> 
+                    </div>
+                    <div>
+                        <p>Password</p>
+                        <input type="password" name="password"> 
+                    </div>
+                    <div>
+                        <p>Comfirm Password</p>
+                        <input type="password" name="password"> 
+                    </div>
+                </form>
+            </div>
+            <div class="create-account">
+                <button type="button">Create account</button>
+                <p>Already have an account? <a href="#">Log in</a></p>
+            </div>
         </div>
-    
     </body>
 </html>

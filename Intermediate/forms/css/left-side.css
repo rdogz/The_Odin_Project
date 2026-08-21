@@ -4,16 +4,25 @@
 }
 
 
+body {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.left-side {
+    display: flex;
+    max-width: 40vw;
+}
+
 .left-div {
     display: flex;
     min-height: 100vh;
     max-width: 40vw;
 }
 
-.img {
+img {
     min-height: 100vh;
-    width: 40%;
-    background: center / cover no-repeat url(../images/bg.jpg);
+    width: 100%;
 }
 
 .logo-div {
