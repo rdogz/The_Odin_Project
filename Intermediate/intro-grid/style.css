@@ -1,0 +1,11 @@
+* {
+    border: solid red;
+}
+
+.container {
+    display: grid;
+    grid-template: 50px 50px / 50px 50px;
+    column-gap: 10px;
+    row-gap: 100px;
+    justify-content: center;
+}
