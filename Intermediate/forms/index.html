@@ -25,14 +25,14 @@
                 <div class="header">
                     <h2>Let's do this!</h2>
                 </div>
-                <form>
+                <form id="user-form" action="#" method="post">
                     <div>
                         <p>First name</p>
-                        <input type="text" name="first_name"> 
+                        <input type="text" name="first_name" required> 
                     </div>
                     <div>
                         <p>Last name</p>
-                        <input type="text" name="last_name"> 
+                        <input type="text" name="last_name" required> 
                     </div>
                     <div>
                         <p>Email</p>
@@ -44,16 +44,16 @@
                     </div>
                     <div>
                         <p>Password</p>
-                        <input type="password" name="password"> 
+                        <input type="password" name="password" required> 
                     </div>
                     <div>
                         <p>Comfirm Password</p>
-                        <input type="password" name="password"> 
+                        <input type="password" name="password" required> 
                     </div>
                 </form>
             </div>
             <div class="create-account">
-                <button type="button">Create account</button>
+                <button type="submit" form="user-form">Create account</button>
                 <p>Already have an account? <a href="#">Log in</a></p>
             </div>
         </div>

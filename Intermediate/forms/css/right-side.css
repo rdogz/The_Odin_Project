@@ -73,3 +73,12 @@ form p {
 input {
     border-radius: 6px;
 }
+
+input:focus {
+    border-color: deepskyblue;
+    box-shadow: 2px 5px 10px 1px lightgrey;
+}
+
+input[type="password"]:user-invalid {
+    border-color: red;
+}
