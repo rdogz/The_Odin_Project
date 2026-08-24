@@ -1,0 +1,36 @@
+.dashboard {
+    background-color: black;
+    display: flex;
+    align-content: left;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: left;
+}
+
+.dashboard>div {
+    margin-bottom: 50px;
+}
+
+
+.dashboard-item {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.dashboard-header a {
+
+    color: green;
+    text-decoration: none;
+    font-size: 2rem;
+    margin-left: 10px;
+}
+
+.dashboard-item a {
+    color: green;
+    font-size: 1.3rem;
+    margin-left: 10px;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}

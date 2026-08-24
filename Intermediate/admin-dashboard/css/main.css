@@ -1,0 +1,63 @@
+.main {
+    display: grid;
+    grid-template-rows: 1fr 4fr;
+    height: 100vh;
+    width: 80vw;
+    background-color: #0D1610;
+}
+
+.topbar {
+    display: grid;
+    background-color: #0D1610;
+    grid-template-rows: 1fr 4fr;
+    grid-template-columns: 1;
+    width: 100%;
+    height: 20vh;
+    color: green;
+    justify-content: center;
+}
+
+
+.topbar>div {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 4fr 3fr;
+    width: 65vw;
+    align-items: center;
+    gap: 20px;
+    grid-auto-rows: 0;
+}
+
+.topbar button {
+    color: green;
+    background-color: #0D1610;
+    font-size: 1.5rem;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: green;
+    width: 100%;
+    margin-left: 50px;
+    gap: 10%;
+}
+
+.topbar img {
+    background-color: white;
+    border-radius: 25px;
+    width: 50px;
+}
+
+.topbar p {
+    color: green;
+}
+
+.content {
+    background-color: #0B0F0C;
+}
+
+button:hover {
+    cursor: pointer;
+}
