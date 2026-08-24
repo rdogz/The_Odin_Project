@@ -7,10 +7,6 @@
     font-family: "BigBlueTerm";
 }
 
-* {
-    border: 1px solid red;
-}
-
 body {
     display: grid;
     grid-template-columns: 1fr 4fr;
