@@ -1,0 +1,59 @@
+.content {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    width: 100%;
+    color: green;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 20px;
+    height: 20vh;
+    width: 50vw;
+    margin: 30px;
+}
+
+.content button {
+    background-color: black;
+    color: green;
+}
+
+.right-side-bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.announcements {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.announcements>div {
+    border-color: forestgreen;
+}
+
+.announcements p {
+    font-size: 0.8rem;
+}
+
+.trending {
+    display: grid;
+    grid-template-rows: repeat(3, 3fr);
+    justify-content: center;
+    gap: 10px;
+}
+
+.trending>div {
+    border-color: forestgreen;
+    display: flex;
+}
+
+.trending div img {
+    width: 20px;
+    height: 20px;
+    align-self: center;
+    background-color: white;
+}
