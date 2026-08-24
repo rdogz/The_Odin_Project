@@ -21,7 +21,7 @@
 .topbar>div {
     display: grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 1fr 4fr 3fr;
+    grid-template-columns: 4fr 3fr;
     width: 65vw;
     align-items: center;
     gap: 20px;
@@ -50,6 +50,12 @@
     width: 50px;
 }
 
+.search {
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    gap: 10px;
+}
+
 .topbar p {
     color: green;
 }
@@ -61,3 +67,33 @@
 button:hover {
     cursor: pointer;
 }
+
+/*NAVBAR*/
+
+.navbar {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    width: 65vw;
+}
+
+.navbar div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.navbar div img {
+    background-color: white;
+    width: 80px;
+    border-radius: 25px;
+}
+
+.header-text {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar:first-child {}
