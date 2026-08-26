@@ -97,6 +97,14 @@ function updateDOM(library, index) {
 
         if (book) {
             book.toggleRead(library, bookId);
+
+            if (book.read) {
+                newRead.style.backgroundColor = "green";
+                newRead.innerText = "Book finished";
+            } else {
+                newRead.style.backgroundColor = "red";
+                newRead.innerText = "Book not yet finished";
+            }
         }
     });
 
