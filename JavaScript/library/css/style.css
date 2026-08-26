@@ -36,10 +36,25 @@ body {
 
 .book h1 {
     font-family: "Eagle Lake", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
 }
 
-.book p:last-child {
+.book button:last-child {
     background-color: red;
     border-radius: 90% 25% 10% 75% / 36% 50% 50% 50%;
     opacity: 70%;
+}
+
+dialog {
+    position: relative;
+}
+
+dialog button {
+    background-color: green;
+    border-radius: 10px;
+}
+
+.form-open {
+    position: absolute;
+    display: flex;
 }

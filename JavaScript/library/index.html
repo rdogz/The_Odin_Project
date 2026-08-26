@@ -18,7 +18,20 @@
     </head>
     <body>
         <div class="header">
-            <button type="button" class="new-book">New Book</button>
+            <button command="show-modal" commandfor="my-dialog" class="new-book">Add book</button>        
+            <dialog id="my-dialog">
+                <form>
+                    <p>Book Title</p>
+                    <input type="text" name="form-book-title" required> 
+                    <p>Author</p>
+                    <input type="text" name="form-book-author" required> 
+                    <p>Number of pages</p>
+                    <input type="text" name="form-book-pages" required><br> 
+                    <input type="checkbox" name="form-book-read">
+                    <label for="form-book-read">Book read</label><br>
+                    <button type="submit" class="form-add-book">Add book</button>
+                </form>
+            </dialog>
         </div>
     
         <div class="library">
