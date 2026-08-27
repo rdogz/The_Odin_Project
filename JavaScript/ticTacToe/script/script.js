@@ -76,7 +76,6 @@ function Game() {
         prevPlayer = p2;
 
         while (gameResult === 0 && gameTurn < 9) {
-
             while (!validChoice) {
                 console.log(`${currentPlayer.name}'s turn`);
                 const r = Number(prompt("\tEnter row: ")); 
@@ -85,6 +84,8 @@ function Game() {
 
                 validChoice = choice(r, c);
             }
+
+            validChoice = false;
 
             if (gameTurn >= 5) {
                 gameResult = checkWinner(prevPlayer);
@@ -120,10 +121,10 @@ function Game() {
 
 
 // TEMP STUFF FOR TESTING
-const player1 = Player("Player 1", "X", 1);
+/*const player1 = Player("Player 1", "X", 1);
 const player2 = Player("Player 2", "O", -1);
 
 const game = Game();
 
-game.gameStart(player1, player2);
+console.log(`${game.gameStart(player1, player2)} wins!`); */
 // END OF TEMP STUFF
