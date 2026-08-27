@@ -76,8 +76,8 @@ function Game() {
             }
         } 
 
-        if (gameTurn > 9) {
-            return Draw;
+        if (gameTurn > 8) {
+            return "Draw";
         }
         return 0;
     }
@@ -134,7 +134,14 @@ const gameRender = function() {
 
             div.textContent = player.mark;
 
-            if (game.checkWinner(player)) {
+            result = game.checkWinner(player);
+
+            if (result == "Draw") {
+                game.reset();
+                htmlBoard.innerHTML = "";
+                htmlBoard.textContent = "It's a Draw!"
+
+            } else if (result) {
                 game.reset();
                 htmlBoard.innerHTML = "";
                 htmlBoard.textContent = `${player.name} wins!`
