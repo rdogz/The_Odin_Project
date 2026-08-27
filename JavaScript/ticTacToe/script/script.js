@@ -1,3 +1,12 @@
+const htmlBoard = document.querySelector(".board");
+const startButton = document.querySelector("#start-game");
+
+startButton.addEventListener("click", () => {
+    htmlBoard.innerHTML = "";
+    gameRender();
+})
+
+
 const board = (() => {
     const gameboard = [
         ["", "", ""],
@@ -52,7 +61,7 @@ function Game() {
         // Change currentPlayer and prevPlayer
         [currentPlayer, prevPlayer] = [prevPlayer, currentPlayer];
 
-        return true;
+        return prevPlayer;
     }
 
     const checkWinner = function(p){
@@ -65,40 +74,20 @@ function Game() {
             if (state.diag[i] === (p.number * 3)) {
                 return p.number;
             }
+        } 
+
+        if (gameTurn > 9) {
+            return Draw;
         }
         return 0;
     }
 
     const gameStart = function(p1, p2) {
-        let validChoice = false;
-        let gameResult = 0;
         currentPlayer = p1;
         prevPlayer = p2;
+    };
 
-        while (gameResult === 0 && gameTurn < 9) {
-            while (!validChoice) {
-                console.log(`${currentPlayer.name}'s turn`);
-                const r = Number(prompt("\tEnter row: ")); 
-                const c = Number(prompt("\tEnter column: "));  
-                console.log(r, c);
-
-                validChoice = choice(r, c);
-            }
-
-            validChoice = false;
-
-            if (gameTurn >= 5) {
-                gameResult = checkWinner(prevPlayer);
-            }
-        }
-
-        if (gameResult === 0) {
-            return "Draw";
-        }
-
-        return prevPlayer;
-    }
-
+        
     const reset = function() {
         board.reset();
 
@@ -115,10 +104,48 @@ function Game() {
     return {
         gameStart,
         choice,
+        checkWinner,
         reset
     };
 }
 
+const gameRender = function() {
+    const game = Game();
+
+    const player1 = Player("Player 1", "X", 1);
+    const player2 = Player("Player 2", "O", -1);
+
+
+    // Draw board
+    for (let i = 0; i < 9; i++) {
+        let div = document.createElement("div");
+        
+        div.classList.add("board-square");
+
+        div.addEventListener("click", () => {
+            const row = Math.floor(i / 3);
+            const col = i % 3;
+
+            const player = game.choice(row, col);
+
+            if (!player) {
+                return;
+            }
+
+            div.textContent = player.mark;
+
+            if (game.checkWinner(player)) {
+                game.reset();
+                htmlBoard.innerHTML = "";
+                htmlBoard.textContent = `${player.name} wins!`
+            }
+            return;
+        })
+        htmlBoard.appendChild(div);
+    }
+    
+    game.gameStart(player1, player2);
+}
 
 // TEMP STUFF FOR TESTING
 /*const player1 = Player("Player 1", "X", 1);
