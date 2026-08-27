@@ -1,5 +1,3 @@
-console.log("hello");
-
 const board = (() => {
     const gameboard = [
         ["", "", ""],
@@ -71,11 +69,11 @@ function Game() {
         return 0;
     }
 
-    const gameStart = function(player1, player2) {
+    const gameStart = function(p1, p2) {
         let validChoice = false;
         let gameResult = 0;
-        currentPlayer = player1;
-        prevPlayer = player2;
+        currentPlayer = p1;
+        prevPlayer = p2;
 
         while (gameResult === 0 && gameTurn < 9) {
 
@@ -120,3 +118,12 @@ function Game() {
     };
 }
 
+
+// TEMP STUFF FOR TESTING
+const player1 = Player("Player 1", "X", 1);
+const player2 = Player("Player 2", "O", -1);
+
+const game = Game();
+
+game.gameStart(player1, player2);
+// END OF TEMP STUFF
