@@ -18,12 +18,25 @@ const board = (() => {
     return { gameboard, reset };
 })();
 
-board.gameboard[0][0] = "x";
+function Player(argMark, argPlayerNum) {
+    const mark: argMark;
+    const number: argPlayerNum;
+}
 
 function Game(params) {
-    
+    const state = {
+        row: [0, 0, 0],
+        col: [0, 0, 0],
+        diag: [0, 0]
+    }
+
+    const choice = function (r, c) {
+        if (board.gameboard[r][c] == "") {
+            board.gameboard[r][c] = player.mark;
+            state.row[r] += player.number;
+            state.col[c] += player.number;
+            nextTurn(); // TODO
+        }
+    }
 }
 
-function Player(params) {
-    
-}
