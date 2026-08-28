@@ -3,7 +3,17 @@ const startButton = document.querySelector("#start-game");
 
 startButton.addEventListener("click", () => {
     htmlBoard.innerHTML = "";
-    gameRender();
+
+    const p1 = document.querySelector('[name="player1"]').value;
+    const p2 = document.querySelector('[name="player2"]').value;
+
+    if (p1 === "" || p2 === "") {
+        alert("You must choose the player names");
+        return;
+    }
+    
+    startButton.innerText = "Restart";
+    gameRender(p1, p2);
 })
 
 
@@ -109,11 +119,11 @@ function Game() {
     };
 }
 
-const gameRender = function() {
+const gameRender = function(p1Name, p2Name) {
     const game = Game();
 
-    const player1 = Player("Player 1", "X", 1);
-    const player2 = Player("Player 2", "O", -1);
+    const player1 = Player(p1Name, "X", 1);
+    const player2 = Player(p2Name, "O", -1);
 
 
     // Draw board
@@ -140,11 +150,13 @@ const gameRender = function() {
                 game.reset();
                 htmlBoard.innerHTML = "";
                 htmlBoard.textContent = "It's a Draw!"
+                startButton.innerText = "Play again!";
 
             } else if (result) {
                 game.reset();
                 htmlBoard.innerHTML = "";
                 htmlBoard.textContent = `${player.name} wins!`
+                startButton.innerText = "Play again!";
             }
             return;
         })
@@ -152,6 +164,8 @@ const gameRender = function() {
     }
     
     game.gameStart(player1, player2);
+
+
 }
 
 // TEMP STUFF FOR TESTING
