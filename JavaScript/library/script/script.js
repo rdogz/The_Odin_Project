@@ -25,22 +25,20 @@ form.addEventListener("submit", (event) => {
 });
 
 /* Book object */
-function Book() {
-    if (!new.target) {
-        throw Error("You must use the 'new' operator to call the constructor");
+class Book {
+    constructor(id, title, author, pages) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.pages = pages; 
+        this.read = false; 
     }
 
-    this.id;
-    this.title;
-    this.author;
-    this.pages; 
-    this.read = false; 
-
-    Book.prototype.info = function() {
+    info() {
         return `The ${this.title} by ${this.author}, ${this.pages} pages, ${this.read ? "read" : "not read yet"}`
     }
 
-    Book.prototype.toggleRead = function(library, idToUpdate) {
+    toggleRead(library, idToUpdate) {
        const bookToUpdate = library.find(book => book.id === idToUpdate);
 
         if (bookToUpdate) {
