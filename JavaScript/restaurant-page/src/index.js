@@ -1,3 +1,31 @@
-import { renderInitialPage } from "./initial-page-load.js";
+import { loadHome } from "./load-home.js";
 
-renderInitialPage();
+const contentDiv = document.querySelector("#content");
+
+
+loadHome();
+
+function switchTabs() {
+    const homeButton = document.querySelector("#home")
+    const menuButton = document.querySelector("#menu")
+    const contactButton = document.querySelector("#contact")
+
+    homeButton.addEventListener("click", () => {
+        contentDiv.innerHTML = "";
+        homeButton.style.backgroundColor = "red";
+        loadHome();
+    })
+
+    menuButton.addEventListener("click", () => {
+        contentDiv.innerHTML = "";
+        menuButton.style.backgroundColor = "red";
+    })
+
+    contactButton.addEventListener("click", () => {
+        contactButton.style.backgroundColor = "red";
+    })
+}
+
+switchTabs();
+
+export { contentDiv };
