@@ -1,4 +1,6 @@
 import { loadHome } from "./load-home.js";
+import { loadMenu } from "./load-menu.js";
+import { loadContact } from "./load-contact.js";
 
 const contentDiv = document.querySelector("#content");
 
@@ -19,10 +21,13 @@ function switchTabs() {
     menuButton.addEventListener("click", () => {
         contentDiv.innerHTML = "";
         menuButton.style.backgroundColor = "red";
+        loadMenu();
     })
 
     contactButton.addEventListener("click", () => {
-        contactButton.style.backgroundColor = "red";
+        contentDiv.innerHTML = "";
+        menuButton.style.backgroundColor = "red";
+        loadContact();
     })
 }
 

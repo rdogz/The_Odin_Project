@@ -3,8 +3,10 @@
 import { contentDiv } from "./index.js"
 
 function loadHome() {
-    const title = document.createElement("h1");
-    title.innerText = "Welcome to our restaurant"
+    const titleDiv = document.createElement("div");
+    const titleDivHeading = document.createElement("h1");
+    titleDivHeading.innerText = "A restaurant";
+    contentDiv.appendChild(titleDivHeading);
 
     const descriptionDiv = document.createElement("div");
     const descriptionDivTitle = document.createElement("h1");
