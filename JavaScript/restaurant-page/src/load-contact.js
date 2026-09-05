@@ -3,7 +3,7 @@ import { contentDiv } from "./index.js"
 function loadContact() {
     const titleDiv = document.createElement("div");
     const titleDivHeading = document.createElement("h1");
-    titleDivHeading.innerText = "Menu";
+    titleDivHeading.innerText = "Contact Us";
     contentDiv.appendChild(titleDivHeading);
 
     /* First Item */

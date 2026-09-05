@@ -14,19 +14,16 @@ function switchTabs() {
 
     homeButton.addEventListener("click", () => {
         contentDiv.innerHTML = "";
-        homeButton.style.backgroundColor = "red";
         loadHome();
     })
 
     menuButton.addEventListener("click", () => {
         contentDiv.innerHTML = "";
-        menuButton.style.backgroundColor = "red";
         loadMenu();
     })
 
     contactButton.addEventListener("click", () => {
         contentDiv.innerHTML = "";
-        menuButton.style.backgroundColor = "red";
         loadContact();
     })
 }
