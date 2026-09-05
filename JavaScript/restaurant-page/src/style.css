@@ -1,0 +1,29 @@
+body {
+    background-color: purple;
+}
+
+header {
+    border: solid red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    height: 10vh;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+}
+
+nav button {
+    font-size: 2rem;
+}
+
+#content {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
