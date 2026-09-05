@@ -1,1 +1,3 @@
-console.log("hello, world")
+import { renderInitialPage } from "./initial-page-load.js";
+
+renderInitialPage();
