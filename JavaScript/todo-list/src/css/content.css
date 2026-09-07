@@ -1,13 +1,33 @@
-#content {
-    display: grid;
-    grid-template-columns: 1fr;
-    align-items: center;
+.content-header {
+    display: flex;
     justify-content: center;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
     gap: 10px;
     background-color: #f8f5f0;
+    padding: 1rem;
+}
+
+.todo-item h2 {
+    align-self: center;
 }
 
 .todo-item {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px;
+    border: dashed orangered;
+}
+
+.todo-item-header {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    gap: 1rem;
+    margin: 12px;
 }
