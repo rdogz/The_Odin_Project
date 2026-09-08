@@ -12,22 +12,26 @@
                 <h1>TODO</h1>
             </div>
             <div class="add-project">
-                <button command="show-modal" commandfor="add-project" class="new-book">New Project</button>        
+                <button command="show-modal" commandfor="add-project" class="new-book">+ Project</button>        
                 <dialog id="add-project">
-                    <form>
-                        <p>Project name</p>
-                        <input type="text" name="form-book-title" required> 
-                        <p>Description</p>
-                        <input type="text" name="form-book-author" required> 
-                        <p>Number of pages</p>
-                        <input type="text" name="form-book-pages" required><br> 
-                        <input type="checkbox" name="form-book-read">
-                        <label for="form-book-read">Book read</label><br>
-                        <button type="submit" class="form-add-book">Add book</button>
+                    <form id="project-form">
+                        <label for="project-name">Project title:</label>
+                        <input type="text" name="project-name" required> 
+                        <button type="submit">Add</button>
                     </form>
                 </dialog>
             </div>
-            <div class="add-task">
+            
+            <button type="button">Search</button>
+            <div class="sidebar-project-container">
+                <h1>My projects</h1>
+                <button type="buton"># Default</button>
+            </div>
+        </div>
+        <div id="content">
+            <div class="content-header">
+                <h1>Project: Default</h1>
+                <div class="add-task">
                 <button command="show-modal" commandfor="add-task" class="new-task">+ Add task</button>        
                 <dialog id="add-task">
                     <form id="task-form">
@@ -50,16 +54,6 @@
                     </form>
                 </dialog>
             </div>
-            <button type="button">Search</button>
-            <div class="sidebar-project-container">
-                <h1>My projects</h1>
-                <button type="buton"># Meditation</button>
-                <button type="buton"># Study</button>
-            </div>
-        </div>
-        <div id="content">
-            <div class="content-header">
-                <h1>Project: joe mama</h1>
             </div>
         </div>
     </body>

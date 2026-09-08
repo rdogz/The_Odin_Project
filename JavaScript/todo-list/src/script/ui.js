@@ -1,67 +1,71 @@
-const getTask = {
-    constructor() {
-        const taskForm = document.querySelector("#task-form"); 
+import { Task, Project, TodoApp } from "./appLogic.js";
 
-        taskForm.addEventListener("submit", () => {
-            event.preventDefault();
+const getTask = () => {
+        const taskName = document.querySelector('[name="task-name"]').value;
+        const taskDescription = document.querySelector('[name="task-description"]').value;
+        const taskDate = document.querySelector('[name="task-date"]').value;
+        const taskPriority = document.querySelector('[name="task-priority"]').value;
 
-            const taskName = document.querySelector('[name="task-name"]').value;
-            const taskDescription = document.querySelector('[name="task-description"]').value;
-            const taskDate = document.querySelector('[name="task-date"]').value;
-            const taskPriority = document.querySelector('[name="task-priority"]').value;
+        return new Task(
+            taskName,
+            taskDescription,
+            taskDate,
+            taskPriority,
+            false
+        )
+};
 
-            console.log(taskName);
-            console.log(taskDescription);
-            console.log(taskDate);
-            console.log(taskPriority);
-        });
-    }
-}
-
-const renderTask = (title, description, date, priority, completed) => {
+const renderTask = (currentTask, currentProject) => {
     const project = document.querySelector("#content");
 
-    const task = document.createElement("div");
-    task.classList.add("todo-item");
+    const taskElement = document.createElement("div");
+    taskElement.id = currentTask.id;
+    taskElement.classList.add("todo-item");
 
     const taskHeader = document.createElement("div");
     taskHeader.classList.add("todo-item-header");
+
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.name = "item-check";
     checkbox.value = "true";
+
     const taskTitle = document.createElement("h2");
-    taskTitle.innerText = title;
+    taskTitle.innerText = currentTask.title;
+
+    const deleteButton = document.createElement("button");
+    deleteButton.innerText = "X";
+
+    deleteButton.addEventListener("click", () => {
+        currentProject.removeTask(currentTask.id);
+        taskElement.remove();
+    });
+
     taskHeader.appendChild(checkbox);
     taskHeader.appendChild(taskTitle);
+    taskHeader.appendChild(deleteButton);
 
-
-    checkbox.addEventListener("click", () => {
-        taskTitle.style.textDecoration = "line-through";
-        taskTitle.style.color = "red";
-    })
     const taskDescription = document.createElement("p");
-    taskDescription.innerText = description;
+    taskDescription.innerText = currentTask.description;
 
     const taskDate = document.createElement("p");
-    taskDate.innerText = `Due date: ${date}` ;
+    taskDate.innerText = `Due date: ${currentTask.dueDate}`;
 
-    task.appendChild(taskHeader);
-    task.appendChild(taskDate);
+    taskElement.appendChild(taskHeader);
+    taskElement.appendChild(taskDescription);
+    taskElement.appendChild(taskDate);
 
-    if (priority === "high") {
-        task.style.borderColor = "orangered";
-        //
-    } else if (priority === "medium") {
-        task.style.borderColor = "yellow";
-        //
-    } else if (priority === "low") {
-        task.style.borderColor = "lightblue";
-        //
+    if (currentTask.priority === "high") {
+        taskElement.style.borderColor = "orangered";
+    } else if (currentTask.priority === "medium") {
+        taskElement.style.borderColor = "yellow";
+    } else if (currentTask.priority === "low") {
+        taskElement.style.borderColor = "lightblue";
     }
 
-    project.appendChild(task);
-}
+    project.appendChild(taskElement);
+};
+
 
 
 export { getTask, renderTask };
