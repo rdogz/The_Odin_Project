@@ -1,4 +1,4 @@
-class GetInputForm {
+const getTask = {
     constructor() {
         const taskForm = document.querySelector("#task-form"); 
 
@@ -18,4 +18,35 @@ class GetInputForm {
     }
 }
 
-export default GetInputForm;
+const renderTask = (title, description, date, priority, completed) => {
+    const project = document.querySelector("#content");
+
+    const task = document.createElement("div");
+    task.classList.add("todo-item");
+
+    const taskHeader = document.createElement("div");
+    taskHeader.classList.add("todo-item-header");
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.name = "item-check";
+    checkbox.value = "true";
+    const taskTitle = document.createElement("h2");
+    taskTitle.innerText = title;
+    taskHeader.appendChild(checkbox);
+    taskHeader.appendChild(taskTitle);
+
+    const taskDescription = document.createElement("p");
+    taskDescription.innerText = description;
+
+    const taskDate = document.createElement("p");
+    taskDate.innerText = `Due date: ${date}` ;
+
+    task.appendChild(taskHeader);
+    task.appendChild(taskDescription);
+    task.appendChild(taskDate);
+
+    project.appendChild(task);
+}
+
+
+export { getTask, renderTask };
