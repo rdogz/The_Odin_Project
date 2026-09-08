@@ -67,5 +67,20 @@ const renderTask = (currentTask, currentProject) => {
 };
 
 
+const getProject = () => {
+        const projectName = document.querySelector('[name="project-name"]').value;
 
-export { getTask, renderTask };
+        return new Project(projectName);
+};
+
+const renderProject = (currentProject) => {
+    const projectContainer = document.querySelector(".sidebar-project-container");
+
+    const newProject = document.createElement("button");
+    newProject.innerText = `# ${currentProject.name}`
+
+
+    projectContainer.appendChild(newProject);
+};
+
+export { getTask, renderTask, getProject, renderProject };
