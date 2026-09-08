@@ -35,6 +35,11 @@ const renderTask = (title, description, date, priority, completed) => {
     taskHeader.appendChild(checkbox);
     taskHeader.appendChild(taskTitle);
 
+
+    checkbox.addEventListener("click", () => {
+        taskTitle.style.textDecoration = "line-through";
+        taskTitle.style.color = "red";
+    })
     const taskDescription = document.createElement("p");
     taskDescription.innerText = description;
 
@@ -42,8 +47,18 @@ const renderTask = (title, description, date, priority, completed) => {
     taskDate.innerText = `Due date: ${date}` ;
 
     task.appendChild(taskHeader);
-    task.appendChild(taskDescription);
     task.appendChild(taskDate);
+
+    if (priority === "high") {
+        task.style.borderColor = "orangered";
+        //
+    } else if (priority === "medium") {
+        task.style.borderColor = "yellow";
+        //
+    } else if (priority === "low") {
+        task.style.borderColor = "lightblue";
+        //
+    }
 
     project.appendChild(task);
 }
