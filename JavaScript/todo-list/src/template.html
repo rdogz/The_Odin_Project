@@ -11,7 +11,45 @@
                 <img src="">
                 <h1>TODO</h1>
             </div>
-            <button type="button">+ Add task</button>
+            <div class="add-project">
+                <button command="show-modal" commandfor="add-project" class="new-book">New Project</button>        
+                <dialog id="add-project">
+                    <form>
+                        <p>Project name</p>
+                        <input type="text" name="form-book-title" required> 
+                        <p>Description</p>
+                        <input type="text" name="form-book-author" required> 
+                        <p>Number of pages</p>
+                        <input type="text" name="form-book-pages" required><br> 
+                        <input type="checkbox" name="form-book-read">
+                        <label for="form-book-read">Book read</label><br>
+                        <button type="submit" class="form-add-book">Add book</button>
+                    </form>
+                </dialog>
+            </div>
+            <div class="add-task">
+                <button command="show-modal" commandfor="add-task" class="new-task">+ Add task</button>        
+                <dialog id="add-task">
+                    <form id="task-form">
+                        <label for="task-name">Task:</label>
+                        <input type="text" name="task-name" required> 
+
+                        <label for="task-description">Description:</label>
+                        <textarea name="task-description" rows="5" cols="30"></textarea>
+
+                        <label for="task-date">Due date:</label>
+                        <input type="date" name="task-date" required> 
+
+                        <label for="task-priority">Priority:</label>
+                        <select name="task-priority">
+                            <option value="high">High</option>
+                            <option value="medium">Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+                        <button type="submit">Add</button>
+                    </form>
+                </dialog>
+            </div>
             <button type="button">Search</button>
             <div class="sidebar-project-container">
                 <h1>My projects</h1>

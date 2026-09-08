@@ -1,6 +1,7 @@
 .todo-logo {
     display: grid;
     grid-template-columns: 0.5fr 1fr;
+    gap: 12px;
 }
 
 .todo-logo img {
@@ -12,6 +13,7 @@
 #sidebar,
 #sidebar button {
     background-color: beige;
+    border: hidden;
 }
 
 #sidebar {
