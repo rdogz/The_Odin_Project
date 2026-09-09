@@ -1,4 +1,28 @@
-h1 {
-    background-color: red;
-    color: black;
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 100dvw;
+  min-height: 100dvh;
+}
+
+form {
+  display: flex;
+  flex: 1;
+  width: 50%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+form div {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  grid-template-rows: 1fr;
+}
+
+button {
+  border-radius: 12px;
+  padding: 6px;
 }
