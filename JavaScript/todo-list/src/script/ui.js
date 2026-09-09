@@ -77,7 +77,6 @@ const renderTask = (task, project) => {
 
 const renderProject = (project, onClick) => {
     const container = document.querySelector(".sidebar-project-container");
-
     const button = document.createElement("button");
 
     button.type = "button";

@@ -63,7 +63,7 @@ if (savedApp) {
 appControl.projects.forEach(project => {
     renderProject(project, selectProject);
 });
-renderTask(firstTask, currentProject);
+renderCurrentProject();
 
 
 // Add task

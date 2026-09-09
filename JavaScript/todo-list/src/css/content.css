@@ -1,6 +1,6 @@
 .content-header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 #content {
@@ -21,7 +21,7 @@
     align-items: flex-start;
     gap: 12px;
     padding: 12px;
-    border: dashed orangered;
+    border: dashed;
 }
 
 .todo-item-header {
@@ -30,4 +30,11 @@
     width: 100%;
     gap: 1rem;
     margin: 12px;
+}
+
+.new-task {
+    background-color: beige;
+    align-self: center;
+    justify-self: center;
+    border-radius: 12px;
 }
