@@ -2,37 +2,38 @@ import "../css/style.css";
 import "../css/reset.css";
 
 const email = document.getElementById("email");
-
 const country = document.getElementById("country");
 const postal = document.getElementById("postal");
 const password = document.getElementById("password");
 const passwordConfirm = document.getElementById("password-confirm");
 const submitButton = document.querySelector("button");
+const form = document.querySelector("form");
 
 const emailP = document.getElementById("email-message");
 const postalP = document.getElementById("postal-message");
 const countryP = document.getElementById("country-message");
 const passwordP = document.getElementById("password-message");
 const passwordConfirmP = document.getElementById("password-confirm-message");
+const buttonMessage = document.getElementById("button-message");
 
 // Email
 email.onkeyup = () => {
-  if (email.validity.valid) {
+  if (validate_email(email.value)) {
     emailP.innerText = "";
   } else {
     emailP.innerText = "Please insert a valid email address";
   }
 };
 
+function validate_email(email) {
+  const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return pattern.test(email);
+}
+
 // Country
 country.onkeyup = () => {
   let inputText = country.value;
-  if (
-    countries.includes(
-      country.value.charAt(0).toUpperCase() +
-        country.value.slice(1).toLowerCase(),
-    )
-  ) {
+  if (countries.includes(country.value)) {
     countryP.innerText = "";
   } else {
     countryP.innerText = "Not a country";
@@ -40,30 +41,45 @@ country.onkeyup = () => {
 };
 
 // Postal code
-postal.addEventListener("input", (event) => {
-  const input = event.target;
-  console.log(input);
-  if (input.validity.valid) {
-    p.innerText = "";
+postal.onkeyup = () => {
+  if (validate_postal(postal.value)) {
+    postalP.innerText = "";
   } else {
+    postalP.innerText = "Please insert a valid postal code";
   }
-});
+};
+
+function validate_postal(code) {
+  const pattern = /^\d{5}(-\d{4})?$/;
+  return pattern.test(code);
+}
 
 // Password
-password.addEventListener("input", (event) => {
-  const input = event.target;
-  if (input.validity.valid) {
-    p.innerText = "";
-  }
-});
-
-// Password
-passwordConfirm.addEventListener("input", (event) => {
-  const input = event.target;
-  if (input.validity.valid) {
-    p.innerText = "";
+password.onkeyup = function () {
+  if (password.value.length < 8) {
+    passwordP.innerText = "Password must have at least 8 characters.";
   } else {
+    passwordP.innerText = "";
   }
+};
+
+// Password confirm
+passwordConfirm.onkeyup = function () {
+  if (password.value !== passwordConfirm.value) {
+    passwordConfirmP.innerText = "Password must match.";
+  } else {
+    passwordConfirmP.innerText = "";
+  }
+};
+
+form.addEventListener("submit", (event) => {
+  if (!form.checkValidity()) {
+    event.preventDefault();
+    buttonMessage.innerText = "Fill all inputs correctly";
+    return;
+  }
+
+  buttonMessage.innerText = "";
 });
 
 const countries = [

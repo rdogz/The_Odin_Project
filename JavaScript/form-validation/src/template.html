@@ -9,13 +9,7 @@
     <form novalidate id="novalidate_form">
       <div id="email-div">
         <label for="email">e-mail:</label>
-        <input
-          id="email"
-          type="email"
-          name="email"
-          pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}"
-          required
-        />
+        <input id="email" type="email" name="email" required />
         <div></div>
         <p id="email-message"></p>
       </div>
@@ -27,26 +21,13 @@
       </div>
       <div>
         <label for="postal">Postal code (*****-****):</label>
-        <input
-          id="postal"
-          type="text"
-          name="postal"
-          pattern="\d{5}([ \-]\d{4})?"
-          required
-        />
+        <input id="postal" type="text" name="postal" required />
         <div></div>
         <p id="postal-message"></p>
       </div>
       <div>
         <label for="password">Password:</label>
-        <input
-          id="password"
-          type="password"
-          name="password"
-          minlength="8"
-          maxlength="32"
-          required
-        />
+        <input id="password" type="password" name="password" required />
         <div></div>
         <p id="password-message"></p>
       </div>
@@ -62,6 +43,7 @@
         <p id="password-confirm-message"></p>
       </div>
       <button type="submit">Send info</button>
+      <p id="button-message"></p>
     </form>
   </body>
 </html>
