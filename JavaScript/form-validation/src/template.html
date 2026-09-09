@@ -6,20 +6,24 @@
     <title>Form validation</title>
   </head>
   <body>
-    <form>
-      <div>
+    <form novalidate id="novalidate_form">
+      <div id="email-div">
         <label for="email">e-mail:</label>
         <input
           id="email"
           type="email"
           name="email"
-          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+          pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}"
           required
         />
+        <div></div>
+        <p id="email-message"></p>
       </div>
       <div>
         <label for="country">Country:</label>
         <input id="country" type="text" name="country" required />
+        <div></div>
+        <p id="country-message"></p>
       </div>
       <div>
         <label for="postal">Postal code (*****-****):</label>
@@ -30,6 +34,8 @@
           pattern="\d{5}([ \-]\d{4})?"
           required
         />
+        <div></div>
+        <p id="postal-message"></p>
       </div>
       <div>
         <label for="password">Password:</label>
@@ -41,6 +47,8 @@
           maxlength="32"
           required
         />
+        <div></div>
+        <p id="password-message"></p>
       </div>
       <div>
         <label for="password-confirm">Confirm Password:</label>
@@ -50,6 +58,8 @@
           name="password-confirm"
           required
         />
+        <div></div>
+        <p id="password-confirm-message"></p>
       </div>
       <button type="submit">Send info</button>
     </form>

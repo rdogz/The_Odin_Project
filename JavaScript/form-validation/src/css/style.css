@@ -48,3 +48,8 @@ input:user-invalid {
 input:user-valid {
   border: 2px solid purple;
 }
+
+div p {
+  margin-top: 10px;
+  font-weight: lighter;
+}
