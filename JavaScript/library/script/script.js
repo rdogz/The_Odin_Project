@@ -6,20 +6,20 @@ const myLibrary = [];
 const domLibrary = document.querySelector(".library");
 const form = document.querySelector("form");
 
+const formTitle = document.querySelector('[name="form-book-title"]');
+const formAuthor = document.querySelector('[name="form-book-author"]');
+const formPages = document.querySelector('[name="form-book-pages"]');
+const formRead = document.querySelector('[name="form-book-read"]');
+
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const formTitle = document.querySelector('[name="form-book-title"]').value;
-  const formAuthor = document.querySelector('[name="form-book-author"]').value;
-  const formPages = document.querySelector('[name="form-book-pages"]').value;
-  const formRead = document.querySelector('[name="form-book-read"]').checked;
-
-  console.log(formTitle);
-  console.log(formAuthor);
-  console.log(formPages);
-  console.log(formRead);
-
-  addBookToLibrary(formTitle, formAuthor, formPages, formRead);
+  addBookToLibrary(
+    formTitle.value,
+    formAuthor.value,
+    formPages.value,
+    formRead.checked,
+  );
   updateDOM(myLibrary, myLibrary.length - 1);
 });
 

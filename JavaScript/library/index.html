@@ -37,7 +37,13 @@
           <p id="author-message"></p>
 
           <label for="book-pages">Number of Pages:</label>
-          <input id="book-pages" type="text" name="form-book-pages" required />
+          <input
+            id="book-pages"
+            type="text"
+            name="form-book-pages"
+            pattern="[0-9]{1,5}"
+            required
+          />
           <p id="pages-message"></p>
 
           <input id="book-read" type="checkbox" name="form-book-read" />
