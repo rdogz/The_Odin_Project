@@ -15,19 +15,49 @@ const taskDialog = document.querySelector("#add-task");
 const projectForm = document.querySelector("#project-form");
 const projectDialog = document.querySelector("#add-project");
 //////////////////////////////////////////////////////////
+//
 
+let appControl;
+let currentProject;
+let firstTask;
+let defaultProject;
 
-const firstTask = new Task(
-    "Water plants",
-    "water them bro",
-    "2026-09-08",
-    "low",
-    false
-);
-const defaultProject = new Project("Default", [firstTask]);
-const appControl = new TodoApp([defaultProject]);
+const savedApp = localStorage.getItem("app");
 
-let currentProject = defaultProject;
+if (savedApp) {
+    const data = JSON.parse(savedApp);
+
+    const projects = data.projects.map(projectData => {
+        const tasks = projectData.tasks.map(taskData => {
+            return new Task(
+                taskData.title,
+                taskData.description,
+                taskData.dueDate,
+                taskData.priority,
+                taskData.completed
+            );
+        });
+
+        return new Project(projectData.name, tasks);
+    });
+
+    appControl = new TodoApp(projects);
+    currentProject = appControl.projects[0];
+
+} else {
+    firstTask = new Task(
+        "Water plants",
+        "water them bro",
+        "2026-09-08",
+        "low",
+        false
+    );
+
+    defaultProject = new Project("Default", [firstTask]);
+
+    appControl = new TodoApp([defaultProject]);
+    currentProject = defaultProject;
+}
 
 
 appControl.projects.forEach(project => {
@@ -46,6 +76,7 @@ taskForm.addEventListener("submit", (event) => {
 
     taskForm.reset();
     taskDialog.close();
+    localStorage.setItem("app", JSON.stringify(appControl));
 });
 
 
@@ -81,4 +112,31 @@ function renderCurrentProject() {
     currentProject.tasks.forEach(task => {
         renderTask(task, currentProject);
     });
+}
+
+// local storage test from mozilla
+function storageAvailable(type) {
+  let storage;
+  try {
+    storage = window[type];
+    const x = "__storage_test__";
+    storage.setItem(x, x);
+    storage.removeItem(x);
+    return true;
+  } catch (e) {
+    return (
+      e instanceof DOMException &&
+      e.name === "QuotaExceededError" &&
+      // acknowledge QuotaExceededError only if there's something already stored
+      storage &&
+      storage.length !== 0
+    );
+  }
+}
+
+
+if (storageAvailable("localStorage")) {
+  console.log("Yippee! We can use localStorage awesomeness");
+} else {
+  console.log("Too bad, no localStorage for us");
 }
