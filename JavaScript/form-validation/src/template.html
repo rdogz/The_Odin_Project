@@ -9,23 +9,47 @@
     <form>
       <div>
         <label for="email">e-mail:</label>
-        <input type="email" name="email" require />
+        <input
+          id="email"
+          type="email"
+          name="email"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+          required
+        />
       </div>
       <div>
         <label for="country">Country:</label>
-        <input type="text" name="country" require />
+        <input id="country" type="text" name="country" required />
       </div>
       <div>
-        <label for="postal">Postal code:</label>
-        <input type="text" name="postal" />
+        <label for="postal">Postal code (*****-****):</label>
+        <input
+          id="postal"
+          type="text"
+          name="postal"
+          pattern="\d{5}([ \-]\d{4})?"
+          required
+        />
       </div>
       <div>
         <label for="password">Password:</label>
-        <input type="password" name="password" />
+        <input
+          id="password"
+          type="password"
+          name="password"
+          minlength="8"
+          maxlength="32"
+          required
+        />
       </div>
       <div>
         <label for="password-confirm">Confirm Password:</label>
-        <input type="password" name="password-confirm" />
+        <input
+          id="password-confirm"
+          type="password"
+          name="password-confirm"
+          required
+        />
       </div>
       <button type="submit">Send info</button>
     </form>

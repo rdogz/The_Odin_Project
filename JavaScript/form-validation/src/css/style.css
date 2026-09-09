@@ -3,6 +3,7 @@ body {
   justify-content: center;
   align-items: center;
   min-width: 100dvw;
+  background-color: hotpink;
   min-height: 100dvh;
 }
 
@@ -14,15 +15,36 @@ form {
   justify-content: center;
   align-items: center;
   gap: 12px;
+  font-weight: bold;
 }
 
 form div {
   display: grid;
-  grid-template-columns: 2fr 3fr;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
 }
 
 button {
   border-radius: 12px;
   padding: 6px;
+  background-color: purple;
+  color: white;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+input {
+  border: 2px solid purple;
+  border-radius: 10px;
+}
+
+input:user-invalid {
+  border: 3px solid red;
+  box-shadow: darkred 10px 10px 5px;
+}
+
+input:user-valid {
+  border: 2px solid purple;
 }
