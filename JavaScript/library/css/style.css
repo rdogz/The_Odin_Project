@@ -1,60 +1,86 @@
 body {
-    display: grid;
-    grid-template-rows: 1fr 4fr;
-    height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr 4fr;
+  height: 100vh;
 }
 
 .header {
-    background-color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .library {
-    display: grid;
-    gap: 16px;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
-    padding: 10px;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
+  padding: 10px;
 }
 
 .new-book {
-    background-color: green;
-    border-radius: 10px;
+  background-color: green;
+  border-radius: 10px;
 }
 
 .book {
-    display: flex;
-    aspect-ratio: 3 / 4;
-    flex: 1;
-    flex-direction: column;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-    background-color: goldenrod;
+  display: flex;
+  aspect-ratio: 3 / 4;
+  flex: 1;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  background-color: goldenrod;
 }
 
 .book h1 {
-    font-family: "Eagle Lake", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    text-align: center;
+  font-family:
+    "Eagle Lake",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  text-align: center;
 }
 
 .book button:last-child {
-    background-color: red;
-    border-radius: 90% 25% 10% 75% / 36% 50% 50% 50%;
-    opacity: 70%;
+  background-color: red;
+  border-radius: 90% 25% 10% 75% / 36% 50% 50% 50%;
+  opacity: 70%;
 }
 
 dialog {
-    position: relative;
+  position: relative;
 }
 
 dialog button {
-    background-color: green;
-    border-radius: 10px;
+  background-color: green;
+  border-radius: 10px;
 }
 
 .form-open {
-    position: absolute;
-    display: flex;
+  position: absolute;
+  display: flex;
+}
+
+input {
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
+input:user-invalid {
+  border: 3px solid red;
+  box-shadow: darkred 10px 10px 5px;
+}
+
+input:user-valid {
+  border: 2px solid black;
 }

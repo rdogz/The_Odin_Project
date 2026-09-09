@@ -1,52 +1,68 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Library</title>
-        <link href="css/style.css" rel="stylesheet">
-        <link href="css/reset.css" rel="stylesheet">
-        <script src="./script/script.js" defer></script>
-        <!-- Font stuff -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Library</title>
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/reset.css" rel="stylesheet" />
+    <script src="./script/script.js" defer></script>
+    <!-- Font stuff -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-<link
-  href="https://fonts.googleapis.com/css2?family=Eagle+Lake&display=swap"
-  rel="stylesheet"
->
-    </head>
-    <body>
-        <div class="header">
-            <button command="show-modal" commandfor="my-dialog" class="new-book">Add book</button>        
-            <dialog id="my-dialog">
-                <form>
-                    <p>Book Title</p>
-                    <input type="text" name="form-book-title" required> 
-                    <p>Author</p>
-                    <input type="text" name="form-book-author" required> 
-                    <p>Number of pages</p>
-                    <input type="text" name="form-book-pages" required><br> 
-                    <input type="checkbox" name="form-book-read">
-                    <label for="form-book-read">Book read</label><br>
-                    <button type="submit" class="form-add-book">Add book</button>
-                </form>
-            </dialog>
-        </div>
-    
-        <div class="library">
-            <div class="book">
-                <h1>How To Love</h1>
-                <p>Author: Cecilia Immergreen</p> 
-                <p>Number of Pages: 67</p>
-                <p>book not yet finished</p>
-            </div>
-            <div class="book">
-                <h1>How To Hate</h1>
-                <p>Author: Cecilia Immergreen</p> 
-                <p>Number of Pages: 69</p>
-                <p>book not yet finished</p>
-            </div>
-        </div>
-    </body>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Eagle+Lake&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="header">
+      <button command="show-modal" commandfor="my-dialog" class="new-book">
+        Add book
+      </button>
+      <dialog id="my-dialog">
+        <form>
+          <label for="book-title">Book Title:</label>
+          <input id="book-title" type="text" name="form-book-title" required />
+          <p id="title-message"></p>
+
+          <label for="book-author">Author:</label>
+          <input
+            id="book-author"
+            type="text"
+            name="form-book-author"
+            required
+          />
+          <p id="author-message"></p>
+
+          <label for="book-pages">Number of Pages:</label>
+          <input id="book-pages" type="text" name="form-book-pages" required />
+          <p id="pages-message"></p>
+
+          <input id="book-read" type="checkbox" name="form-book-read" />
+          <label for="book-read">Book read</label>
+
+          <br />
+
+          <button type="submit" class="form-add-book">Add book</button>
+        </form>
+      </dialog>
+    </div>
+
+    <div class="library">
+      <div class="book">
+        <h1>How To Love</h1>
+        <p>Author: Cecilia Immergreen</p>
+        <p>Number of Pages: 67</p>
+        <p>book not yet finished</p>
+      </div>
+      <div class="book">
+        <h1>How To Hate</h1>
+        <p>Author: Cecilia Immergreen</p>
+        <p>Number of Pages: 69</p>
+        <p>book not yet finished</p>
+      </div>
+    </div>
+  </body>
 </html>
