@@ -34,3 +34,47 @@ input {
 button:hover {
   cursor: pointer;
 }
+
+#weather-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+}
+
+#weather-header {
+  border: 12px solid yellow;
+  padding: 2rem;
+  border-radius: 20px;
+}
+
+#weather-temperature {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+#weather-temperature > * {
+  border: 2px solid deepskyblue;
+  border-radius: 20px;
+  padding: 0.5rem;
+  background-color: skyblue;
+  color: white;
+  box-shadow: 5px 5px grey;
+}
+
+#weather-other {
+  display: flex;
+  justify-content: top;
+  align-items: center;
+  gap: 10px;
+}
+
+#weather-other > * {
+  border: 2px solid black;
+  border-radius: 20px;
+  padding: 0.5rem;
+}

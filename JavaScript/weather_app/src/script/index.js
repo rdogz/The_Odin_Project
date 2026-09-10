@@ -6,7 +6,9 @@ const button = document.querySelector("button");
 const form = document.querySelector("form");
 const currentTime = new Date().toLocaleTimeString();
 const city = document.querySelector("input");
-const weatherDiv = document.querySelector("#weather-display");
+const weatherHeader = document.querySelector("#weather-header");
+const weatherTemp = document.querySelector("#weather-temperature");
+const weatherOther = document.querySelector("#weather-other");
 
 console.log(`Current time: ${currentTime}`);
 
@@ -37,17 +39,45 @@ const cleanData = (obj) => {
     curHumidity: obj.days[0].humidity,
     sunUp: obj.days[0].sunrise,
     sunDown: obj.days[0].sunset,
-    weatherDescription: obj.description,
+    description: obj.description,
   };
 };
 
 function renderWeather(obj) {
-  const tempP = document.createElement("p");
-  tempP.innerText = obj.curTemp;
+  const h1 = document.createElement("h1");
+  const des = document.createElement("p");
+  const current = document.createElement("p");
+  const feels = document.createElement("p");
+  const tomorrow = document.createElement("p");
+  const humidity = document.createElement("p");
+  const up = document.createElement("p");
+  const down = document.createElement("p");
 
-  weatherDiv.appendChild(tempP);
+  // header
+  h1.innerText = obj.city;
+  des.innerText = obj.description;
+  // append header
+  weatherHeader.appendChild(h1);
+  weatherHeader.appendChild(des);
+
+  // temperature
+  current.innerText = `Current: ${obj.curTemp} F°`;
+  tomorrow.innerText = `Tomorrow: ${obj.tomorrowTemp} F°`;
+  feels.innerText = `Feels like: ${obj.curSensation} F°`;
+  // append temperature
+  weatherTemp.appendChild(current);
+  weatherTemp.appendChild(tomorrow);
+  weatherTemp.appendChild(feels);
+
+  // other
+  up.innerText = `Sun up: ${obj.sunUp}`;
+  down.innerText = `Sun down: ${obj.sunDown}`;
+  humidity.innerText = `Humidity: ${obj.curHumidity}`;
+  // append other
+  weatherOther.appendChild(up);
+  weatherOther.appendChild(down);
+  weatherOther.appendChild(feels);
 }
-
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
