@@ -25,16 +25,20 @@ const searches = [
 ];
 
 button.addEventListener("click", () => {
+  getCats();
+});
+
+async function getCats() {
   const randomSearch = searches[Math.floor(Math.random() * searches.length)];
   console.log(randomSearch);
-  fetch(
-    `https://api.giphy.com/v1/gifs/translate?api_key=<YOUR_API_KEY>&s=${randomSearch}&rating=g`,
-  )
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (response) {
-      img.src = "";
-      img.src = response.data.images.original.url;
-    });
-});
+
+  try {
+    const response = await fetch(
+      `https://api.giphy.com/v1/gifs/translate?api_key=<YOUR_API_KEY>&s=${randomSearch}`,
+    );
+    const imgData = await response.json();
+    img.src = imgData.data.images.original.url;
+  } catch (error) {
+    console.error(error);
+  }
+}
