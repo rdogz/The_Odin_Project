@@ -1,0 +1,22 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 100dvh;
+  min-width: 100dvw;
+  background-color: black;
+}
+
+button {
+  background-color: green;
+  border: none;
+  border-radius: 20px;
+  padding: 10px;
+  color: white;
+}
+
+button:hover {
+  cursor: pointer;
+}
