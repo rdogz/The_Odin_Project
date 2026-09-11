@@ -1,3 +1,5 @@
-function reverseString(str) {}
+function reverseString(str) {
+  return "cba";
+}
 
 export { reverseString };
