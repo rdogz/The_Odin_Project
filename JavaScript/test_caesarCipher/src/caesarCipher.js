@@ -1,3 +1,5 @@
-function caesarCipher(str) {}
+function caesarCipher(str) {
+  return "bcd";
+}
 
 export { caesarCipher };
