@@ -1,15 +1,15 @@
 class Calculator {
   add(a, b) {
-    return 2;
+    return a + b;
   }
   subtract(a, b) {
-    return 0;
+    return a - b;
   }
   divide(a, b) {
-    return 2;
+    return a / b;
   }
   multiply(a, b) {
-    return 4;
+    return a * b;
   }
 }
 
