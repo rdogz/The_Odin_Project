@@ -8,15 +8,36 @@ function analyzeArray(arr) {
 }
 
 function calcAvg(arr) {
-  return 4;
+  const d = arr.length;
+  const sum = arr.reduce((a, b) => {
+    return a + b;
+  });
+
+  return sum / d;
 }
 
 function calcMin(arr) {
-  return 1;
+  let min = arr[0];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (min > arr[i]) {
+      min = arr[i];
+    }
+  }
+
+  return min;
 }
 
 function calcMax(arr) {
-  return 8;
+  let max = arr[0];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (max < arr[i]) {
+      max = arr[i];
+    }
+  }
+
+  return max;
 }
 
 export { analyzeArray };
