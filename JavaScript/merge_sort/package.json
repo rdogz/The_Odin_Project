@@ -1,0 +1,20 @@
+{
+  "name": "jest_template",
+  "version": "1.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "/home/melinoe/disk/git/jest_template.git"
+  },
+  "author": "rdogz",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "watch": "jest --watch ./src/*.js"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.29.7",
+    "jest": "^30.5.1"
+  }
+}
