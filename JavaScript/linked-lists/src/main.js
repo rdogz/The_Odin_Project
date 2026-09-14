@@ -8,3 +8,8 @@ list.append("parrot");
 list.append("hamster");
 list.append("snake");
 list.append("turtle");
+
+console.log(list);
+console.log(list.toString());
+console.log(list.size());
+console.log(list.findIndex("cat"));
