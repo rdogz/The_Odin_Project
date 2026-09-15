@@ -11,9 +11,28 @@ class Tree {
     return false;
   }
 
-  insert(value) {}
+  insert(value) {
+    let node = this.root;
+
+    while (node !== undefined) {
+      if (node.data < value) {
+        if (node.right === undefined) {
+          node.right = new Node(value);
+          break;
+        }
+        node = node.right;
+      } else if (node.data > value) {
+        if (node.left === undefined) {
+          node.left = new Node(value);
+          break;
+        }
+        node = node.left;
+      }
+    }
+  }
 
   deleteItem(value) {}
+
   levelOrderForEach(callback) {
     // breadth-first level order passing each element to callback
     return new Error("A callback is required");
@@ -45,7 +64,7 @@ class Tree {
 }
 
 class Node {
-  constructor(value, left = null, right = null) {
+  constructor(value, left = undefined, right = undefined) {
     this.data = value;
     this.left = left;
     this.right = right;

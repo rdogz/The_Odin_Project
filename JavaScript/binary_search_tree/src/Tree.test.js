@@ -17,3 +17,6 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
 prettyPrint(test.root);
 console.log(test.includes(7));
 console.log(test.includes(69));
+
+test.insert(69);
+prettyPrint(test.root);
