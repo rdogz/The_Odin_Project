@@ -40,7 +40,7 @@ class Tree {
 
 class Node {
   constructor(value, left = null, right = null) {
-    this.value = value;
+    this.data = value;
     this.left = left;
     this.right = right;
   }
@@ -51,9 +51,9 @@ function buildTree(arr) {
   let sorted = mergeSort(arr);
   sorted = clearDupes(sorted);
 
-  sorted = linkTreeNodes(sorted);
+  const root = linkTreeNodes(sorted);
 
-  return sorted;
+  return root;
 }
 
 function clearDupes(arr) {
