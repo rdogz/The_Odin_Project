@@ -5,8 +5,14 @@ class Tree {
     this.root = buildTree(arr);
   }
 
-  includes() {}
-  insert() {}
+  includes(value) {
+    if (postorder(this.root).includes(value)) return true;
+
+    return false;
+  }
+
+  insert(value) {}
+
   deleteItem(value) {}
   levelOrderForEach(callback) {
     // breadth-first level order passing each element to callback
@@ -86,6 +92,37 @@ function linkTreeNodes(arr) {
   }
 
   return root;
+}
+
+function preorder(node) {
+  if (node === null || node === undefined) return;
+
+  // root
+  return preorder(node.left);
+  return preorder(node.right);
+}
+function inorder(node) {
+  if (node === null || node === undefined) return;
+
+  return preorder(node.left);
+  // root
+  return preorder(node.right);
+}
+
+function postorder(node) {
+  let arr = [];
+  if (node === null || node === undefined) return arr;
+
+  for (const key of postorder(node.left)) {
+    arr.push(key);
+  }
+  for (const key of postorder(node.right)) {
+    arr.push(key);
+  }
+
+  arr.push(node.data);
+
+  return arr;
 }
 
 export { Tree };
