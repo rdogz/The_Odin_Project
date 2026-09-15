@@ -5,12 +5,14 @@ class Tree {
     this.root = buildTree(arr);
   }
 
+  // done
   includes(value) {
     if (postorder(this.root).includes(value)) return true;
 
     return false;
   }
 
+  // done
   insert(value) {
     let node = this.root;
 
@@ -31,10 +33,12 @@ class Tree {
     }
   }
 
+  // done
   deleteItem(value) {
     this.root = this.deleteItemRecursive(value, this.root);
   }
 
+  // done
   deleteItemRecursive(value, node) {
     if (node === undefined) return undefined;
 
@@ -64,8 +68,23 @@ class Tree {
 
   levelOrderForEach(callback) {
     // breadth-first level order passing each element to callback
-    return new Error("A callback is required");
+    if (typeof callback !== "function") {
+      throw new Error("A callback is required");
+    }
+
+    let queue = [];
+    let curQueue = 0;
+    let node = this.root;
+
+    if (node === undefined) return;
+    while (node !== undefined) {
+      callback(node.data);
+      if (node.left !== undefined) queue.push(node.left);
+      if (node.right !== undefined) queue.push(node.right);
+      node = queue[curQueue++];
+    }
   }
+
   inOrderForEach(callback) {
     //depth-first order
     return new Error("A callback is required");
