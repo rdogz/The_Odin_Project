@@ -20,3 +20,6 @@ console.log(test.includes(69));
 
 test.insert(69);
 prettyPrint(test.root);
+test.deleteItem(67);
+console.log("----------------------------------");
+prettyPrint(test.root);

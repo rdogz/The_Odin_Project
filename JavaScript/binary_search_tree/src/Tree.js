@@ -31,7 +31,36 @@ class Tree {
     }
   }
 
-  deleteItem(value) {}
+  deleteItem(value) {
+    this.root = this.deleteItemRecursive(value, this.root);
+  }
+
+  deleteItemRecursive(value, node) {
+    if (node === undefined) return undefined;
+
+    if (node.data < value) {
+      node.right = this.deleteItemRecursive(value, node.right);
+    } else if (node.data > value) {
+      node.left = this.deleteItemRecursive(value, node.left);
+    } else {
+      // no children or 1 child
+      if (node.left === undefined) {
+        return node.right;
+      } else if (node.right === undefined) {
+        return node.left;
+      }
+
+      // case 2: two children
+      let curNode = node.right;
+      while (curNode.left !== undefined) {
+        curNode = curNode.left;
+      }
+      node.data = curNode.data;
+      node.right = this.deleteItemRecursive(node.data, node.right);
+    }
+
+    return node;
+  }
 
   levelOrderForEach(callback) {
     // breadth-first level order passing each element to callback
@@ -99,7 +128,7 @@ function clearDupes(arr) {
 }
 
 function linkTreeNodes(arr) {
-  if (arr.length === 0) return null;
+  if (arr.length === 0) return undefined;
   const halfArr = Math.floor(arr.length / 2);
   const root = new Node(arr[halfArr]);
 
@@ -114,14 +143,14 @@ function linkTreeNodes(arr) {
 }
 
 function preorder(node) {
-  if (node === null || node === undefined) return;
+  if (node === undefined) return;
 
   // root
   return preorder(node.left);
   return preorder(node.right);
 }
 function inorder(node) {
-  if (node === null || node === undefined) return;
+  if (node === undefined) return;
 
   return preorder(node.left);
   // root
@@ -130,7 +159,7 @@ function inorder(node) {
 
 function postorder(node) {
   let arr = [];
-  if (node === null || node === undefined) return arr;
+  if (node === undefined) return arr;
 
   for (const key of postorder(node.left)) {
     arr.push(key);
