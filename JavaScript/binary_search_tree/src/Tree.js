@@ -125,7 +125,15 @@ class Tree {
 
   isBalanced() {}
 
-  rebalance() {}
+  rebalance() {
+    let treeArr = [];
+
+    this.inOrderForEach((element) => {
+      treeArr.push(element);
+    });
+
+    this.root = buildTree(treeArr);
+  }
 }
 
 class Node {

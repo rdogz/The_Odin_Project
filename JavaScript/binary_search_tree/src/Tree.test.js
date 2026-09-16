@@ -14,15 +14,9 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
 };
 
+console.log("Before:");
 prettyPrint(test.root);
-console.log(test.includes(7));
-console.log(test.includes(69));
-
-test.insert(69);
-prettyPrint(test.root);
-test.deleteItem(67);
 console.log("----------------------------------");
-
-test.preOrderForEach((element) => {
-  console.log(element);
-});
+test.rebalance();
+console.log("After:");
+prettyPrint(test.root);
