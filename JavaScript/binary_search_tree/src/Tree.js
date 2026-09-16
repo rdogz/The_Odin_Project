@@ -116,11 +116,22 @@ class Tree {
   }
 
   height(value) {
-    return undefined;
+    if (!this.includes(value)) return undefined;
+    // find node
+    const ourNode = getNode(value, this.root);
+
+    // find height
+    const nodeHeight = heightHelper(ourNode);
+
+    return nodeHeight;
   }
 
   depth(value) {
-    return undefined;
+    if (!this.includes(value)) return undefined;
+    // distance from root to node
+
+    const nodeDepth = depthHelper(value, this.root);
+    return nodeDepth;
   }
 
   isBalanced() {}
@@ -186,6 +197,19 @@ function linkTreeNodes(arr) {
   return root;
 }
 
+function getNode(value, node) {
+  let queue = [];
+  let curQueue = 0;
+
+  if (node === undefined) return undefined;
+  while (node !== undefined) {
+    if (node.data === value) return node;
+    if (node.left !== undefined) queue.push(node.left);
+    if (node.right !== undefined) queue.push(node.right);
+    node = queue[curQueue++];
+  }
+}
+
 function preOrder(callback, node) {
   // root
   // node.left
@@ -231,6 +255,27 @@ function treeToArray(node) {
   arr.push(node.data);
 
   return arr;
+}
+
+function heightHelper(node) {
+  if (node === undefined) return 0;
+  if (node.left === undefined && node.right === undefined) return 0;
+  return 1 + max(heightHelper(node.left), heightHelper(node.right));
+}
+
+function max(a, b) {
+  if (a > b) return a;
+  if (a < b) return b;
+  if (a === b) return a;
+}
+
+function depthHelper(value, node, currentDepth = 0) {
+  if (node === undefined) return 0;
+  if (value < node.data) return depthHelper(value, node.left, currentDepth + 1);
+  if (value > node.data)
+    return depthHelper(value, node.right, currentDepth + 1);
+
+  if (node.data === value) return currentDepth;
 }
 
 export { Tree };

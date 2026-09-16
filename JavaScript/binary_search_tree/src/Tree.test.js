@@ -20,3 +20,5 @@ console.log("----------------------------------");
 test.rebalance();
 console.log("After:");
 prettyPrint(test.root);
+
+console.log(test.depth(9));
