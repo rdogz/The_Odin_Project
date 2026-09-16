@@ -7,6 +7,8 @@ class Tree {
 
   // done
   includes(value) {
+    if (this.root === undefined) return false;
+
     if (treeToArray(this.root).includes(value)) return true;
 
     return false;
@@ -14,6 +16,11 @@ class Tree {
 
   // done
   insert(value) {
+    if (this.root === undefined) {
+      this.root = new Node(value);
+      return;
+    }
+
     let node = this.root;
 
     while (node !== undefined) {
@@ -28,13 +35,12 @@ class Tree {
           node.left = new Node(value);
           break;
         }
+        node = node.left;
       } else if (node.data === value) {
         break;
       }
-      node = node.left;
     }
   }
-
   // done
   deleteItem(value) {
     this.root = this.deleteItemRecursive(value, this.root);
@@ -142,7 +148,21 @@ class Tree {
     let node = this.root;
 
     while (node !== undefined) {
-      const diff = this.height(node.left.data) - this.height(node.right.data);
+      let leftHeight;
+      let rightHeight;
+
+      if (node.left === undefined) {
+        leftHeight = 0;
+      } else {
+        leftHeight = node.left.data;
+      }
+      if (node.right === undefined) {
+        rightHeight = 0;
+      } else {
+        rightHeight = node.right.data;
+      }
+
+      const diff = this.height(leftHeight) - this.height(rightHeight);
       console.log(diff);
       if (diff > 1 || diff < -1) return false;
 
@@ -185,12 +205,13 @@ function buildTree(arr) {
 }
 
 function clearDupes(arr) {
+  if (arr.length === 0) return [];
   let retArr = [];
   let i = 0;
   let j = 1;
 
   while (j < arr.length) {
-    if (arr[i] !== arr[j]) {
+    if (arr[i] !== arr[j] && arr[i] !== undefined) {
       retArr.push(arr[i]);
     }
     i++;
@@ -297,4 +318,4 @@ function depthHelper(value, node, currentDepth = 0) {
   if (node.data === value) return currentDepth;
 }
 
-export { Tree };
+export { Tree, Node };
