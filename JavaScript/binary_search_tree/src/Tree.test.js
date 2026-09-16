@@ -22,8 +22,7 @@ test.insert(69);
 prettyPrint(test.root);
 test.deleteItem(67);
 console.log("----------------------------------");
-test.levelOrderForEach((element) => {
+
+test.preOrderForEach((element) => {
   console.log(element);
 });
-
-prettyPrint(test.root);

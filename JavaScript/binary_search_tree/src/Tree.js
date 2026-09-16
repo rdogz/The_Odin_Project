@@ -7,7 +7,7 @@ class Tree {
 
   // done
   includes(value) {
-    if (postorder(this.root).includes(value)) return true;
+    if (treeToArray(this.root).includes(value)) return true;
 
     return false;
   }
@@ -86,16 +86,33 @@ class Tree {
   }
 
   inOrderForEach(callback) {
-    //depth-first order
-    return new Error("A callback is required");
+    if (typeof callback !== "function") {
+      throw new Error("A callback is required");
+    }
+    const node = this.root;
+    if (node === undefined) return;
+
+    inOrder(callback, node);
   }
+
   preOrderForEach(callback) {
-    //depth-first order
-    return new Error("A callback is required");
+    if (typeof callback !== "function") {
+      throw new Error("A callback is required");
+    }
+    const node = this.root;
+    if (node === undefined) return;
+
+    preOrder(callback, node);
   }
+
   postOrderForEach(callback) {
-    //depth-first order
-    return new Error("A callback is required");
+    if (typeof callback !== "function") {
+      throw new Error("A callback is required");
+    }
+    const node = this.root;
+    if (node === undefined) return;
+
+    postOrder(callback, node);
   }
 
   height(value) {
@@ -161,29 +178,45 @@ function linkTreeNodes(arr) {
   return root;
 }
 
-function preorder(node) {
+function preOrder(callback, node) {
+  // root
+  // node.left
+  // node.right
   if (node === undefined) return;
 
-  // root
-  return preorder(node.left);
-  return preorder(node.right);
+  callback(node.data);
+  preOrder(callback, node.left);
+  preOrder(callback, node.right);
 }
-function inorder(node) {
+
+function inOrder(callback, node) {
+  // node.left
+  // root
+  // node.right
+
   if (node === undefined) return;
 
-  return preorder(node.left);
-  // root
-  return preorder(node.right);
+  inOrder(callback, node.left);
+  callback(node.data);
+  inOrder(callback, node.right);
 }
 
-function postorder(node) {
+function postOrder(callback, node) {
+  if (node === undefined) return;
+
+  postOrder(callback, node.left);
+  postOrder(callback, node.right);
+  callback(node.data);
+}
+
+function treeToArray(node) {
   let arr = [];
   if (node === undefined) return arr;
 
-  for (const key of postorder(node.left)) {
+  for (const key of treeToArray(node.left)) {
     arr.push(key);
   }
-  for (const key of postorder(node.right)) {
+  for (const key of treeToArray(node.right)) {
     arr.push(key);
   }
 
