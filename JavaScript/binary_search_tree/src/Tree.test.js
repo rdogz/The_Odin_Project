@@ -19,6 +19,12 @@ prettyPrint(test.root);
 console.log("----------------------------------");
 test.rebalance();
 console.log("After:");
-prettyPrint(test.root);
 
-console.log(test.depth(9));
+test.insert(0);
+test.insert(-1);
+test.insert(-2);
+test.insert(-3);
+prettyPrint(test.root);
+console.log(test.height(3));
+console.log(test.height(7));
+console.log(test.isBalanced());

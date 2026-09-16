@@ -28,8 +28,10 @@ class Tree {
           node.left = new Node(value);
           break;
         }
-        node = node.left;
+      } else if (node.data === value) {
+        break;
       }
+      node = node.left;
     }
   }
 
@@ -134,7 +136,24 @@ class Tree {
     return nodeDepth;
   }
 
-  isBalanced() {}
+  isBalanced() {
+    let queue = [this.root];
+    let curQueue = 0;
+    let node = this.root;
+
+    while (node !== undefined) {
+      const diff = this.height(node.left.data) - this.height(node.right.data);
+      console.log(diff);
+      if (diff > 1 || diff < -1) return false;
+
+      if (node.left !== undefined) queue.push(node.left);
+      if (node.right !== undefined) queue.push(node.right);
+
+      node = queue[curQueue++];
+    }
+
+    return true;
+  }
 
   rebalance() {
     let treeArr = [];
