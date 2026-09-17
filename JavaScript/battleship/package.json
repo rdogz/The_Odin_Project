@@ -1,20 +1,24 @@
 {
-  "name": "jest_template",
+  "name": "restaurant-page",
   "version": "1.0.0",
   "description": "",
-  "repository": {
-    "type": "git",
-    "url": "/home/melinoe/disk/git/jest_template.git"
-  },
-  "author": "rdogz",
-  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "watch": "jest --watch ./src/*.js"
+    "dev": "webpack serve --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js",
+    "watch": "jest --watch *.js"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
   "devDependencies": {
     "@babel/preset-env": "^7.29.7",
-    "jest": "^30.5.1"
+    "html-webpack-plugin": "^5.6.8",
+    "jest": "^30.5.1",
+    "webpack": "^5.110.1",
+    "webpack-cli": "^7.2.3",
+    "webpack-dev-server": "^6.0.0",
+    "webpack-merge": "^6.0.1"
   }
 }
