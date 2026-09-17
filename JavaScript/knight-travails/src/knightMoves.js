@@ -3,20 +3,46 @@
 import { Queue } from "./Queue.js";
 
 class Node {
-  constructor(root, position, children) {
+  constructor(root, data) {
     this.root = root;
-    this.position = position;
-    this.children = children;
+    this.data = data;
   }
 }
 
-// 0, x
-// 7, x
-// x, 0
-// x, 7
 // knightMoves([row, col], goal)
 function knightMoves(start, goal) {
-  console.log(moveKnight(start));
+  if (start[0] === goal[0] && start[1] === goal[1]) {
+    return [start];
+  }
+  const queue = new Queue();
+  let curNode = new Node(null, start);
+  let visited = [`${start[0]},${start[1]}`];
+  let shortestPath = [];
+
+  while (true) {
+    for (const node of moveKnight(curNode.data)) {
+      if (!visited.includes(`${node[0]},${node[1]}`)) {
+        visited.push(`${node[0]},${node[1]}`);
+        queue.enqueue(new Node(curNode, node));
+      }
+    }
+
+    curNode = queue.dequeue();
+
+    if (curNode.data[0] === goal[0] && curNode.data[1] === goal[1]) {
+      break;
+    }
+  }
+
+  while (curNode.root !== null) {
+    shortestPath.push(curNode.data);
+    curNode = curNode.root;
+  }
+
+  shortestPath.push(start);
+  shortestPath.reverse();
+
+  return shortestPath;
 }
 
 function moveKnight(start) {
@@ -45,4 +71,23 @@ function moveKnight(start) {
   return legalMoves;
 }
 
-knightMoves([4, 3], [6, 4]);
+function printKnightPath(arr, moves) {
+  console.log(`Moves: ${moves}`);
+  console.log("Path: ");
+  let i;
+  for (i = 0; i < arr.length - 1; i++) {
+    console.log(` [${arr[i]}]`);
+    console.log("   |");
+    console.log("   v");
+  }
+  console.log(` [${arr[i]}]`);
+}
+
+let currentKnightMove = knightMoves([4, 3], [4, 6]);
+printKnightPath(currentKnightMove, currentKnightMove.length - 1);
+
+currentKnightMove = knightMoves([3, 3], [3, 3]);
+printKnightPath(currentKnightMove, currentKnightMove.length - 1);
+
+currentKnightMove = knightMoves([0, 0], [7, 7]);
+printKnightPath(currentKnightMove, currentKnightMove.length - 1);
