@@ -41,3 +41,16 @@ input {
 .boardSquare:hover {
   background-color: cyan;
 }
+
+.playerDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.playerDiv h1 {
+  color: white;
+  font-weight: bold;
+  margin: 1rem;
+}
