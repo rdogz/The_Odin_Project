@@ -1,4 +1,43 @@
-h1 {
-    background-color: red;
-    color: black;
+body {
+  background-color: midnightblue;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  height: 100dvh;
+}
+
+label {
+  color: white;
+}
+button {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  background-color:;
+  background-color: darkgreen;
+}
+
+input {
+  border-radius: 20px;
+  padding: 5px;
+  padding-left: 10px;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  background-color: white;
+  min-height: 50dvh;
+  min-width: 50dvh;
+  aspect-ratio: 1/1;
+}
+
+.boardSquare {
+  background-color: white;
+  border: solid 1px black;
+}
+
+.boardSquare:hover {
+  background-color: cyan;
 }
