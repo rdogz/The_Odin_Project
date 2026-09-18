@@ -1,4 +1,6 @@
 import { Player } from "./Ship.js";
+import { renderGame } from "./renderGameStuff.js";
+import { Game } from "./Game.js";
 
 const body = document.querySelector("body");
 const form = document.querySelector("form");
@@ -11,46 +13,17 @@ let coordinate;
 form.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  player = new Player(input.value);
-  eraseHTML();
+  const draw = new renderGame();
+  const player = new Player(input.value);
+
+  draw.eraseHTML();
   console.log(player.gameboard.battleship);
-  const board = drawGameboard();
+  const board = draw.drawGameboard();
   const playerDiv = drawPlayerSection(player);
-  const ships = drawShips;
   playerDiv.appendChild(board);
 
   body.appendChild(playerDiv);
 });
-
-function eraseHTML() {
-  body.innerHTML = "";
-}
-
-function drawGameboard() {
-  const boardDiv = document.createElement("div");
-  const boardWidth = 10;
-  const boardHeight = 10;
-
-  for (let i = 0; i < boardHeight; i++) {
-    for (let j = 0; j < boardWidth; j++) {
-      const newSquare = document.createElement("div");
-      newSquare.classList.add("boardSquare");
-      newSquare.setAttribute("id", `${j},${i}`);
-
-      newSquare.addEventListener("click", () => {
-        coordinate = [];
-        coordinate.push(Number(newSquare.id.charAt(0)));
-        coordinate.push(Number(newSquare.id.charAt(2)));
-        console.log(coordinate);
-      });
-
-      boardDiv.appendChild(newSquare);
-    }
-  }
-
-  boardDiv.classList.add("board");
-  return boardDiv;
-}
 
 function drawPlayerSection(p) {
   const div = document.createElement("div");
@@ -62,14 +35,4 @@ function drawPlayerSection(p) {
 
   div.classList.add("playerDiv");
   return div;
-}
-
-function drawShips() {
-  const selectionDiv = document.createElement("div");
-
-  const carrier = document.createElement("div");
-  const battleship = document.createElement("div");
-  const destroyer = document.createElement("div");
-  const submarine = document.createElement("div");
-  const patrolBoat = document.createElement("div");
 }
