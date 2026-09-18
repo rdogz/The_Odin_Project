@@ -76,7 +76,7 @@ class Gameboard {
   }
 
   receiveAttack([x, y]) {
-    if (x < 0 || x > 10 || y < 0 || y > 10) {
+    if (x < 0 || x > 9 || y < 0 || y > 9) {
       return false;
     }
     if (this.board[x][y] === "h" || this.board[x][y] === "m") {
@@ -85,7 +85,7 @@ class Gameboard {
 
     if (this.board[x][y] === 0) {
       this.board[x][y] = "m";
-      return "m";
+      return true;
     }
 
     switch (this.board[x][y]) {
@@ -110,7 +110,7 @@ class Gameboard {
     }
 
     this.board[x][y] = "h";
-    return "m";
+    return true;
   }
 
   allSunk() {

@@ -1,6 +1,7 @@
 import { Player } from "./Ship.js";
 import { renderGame } from "./renderGameStuff.js";
 import { Game } from "./Game.js";
+import { playGame } from "./gameConsoleDriver.js";
 
 const body = document.querySelector("body");
 const form = document.querySelector("form");

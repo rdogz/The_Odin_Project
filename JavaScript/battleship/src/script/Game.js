@@ -10,7 +10,7 @@ class Game {
   }
 
   start() {
-    checkPlayers();
+    this.checkPlayers();
     this.gameRunning = true;
     this.isGameOver = false;
     this.playerTurn = 0;
@@ -22,28 +22,27 @@ class Game {
     }
   }
 
-  async turn(getMove) {
+  turn(coordinate) {
     if (!this.gameRunning) return;
 
     const attacker = this.players[this.playerTurn];
     const defender = this.players[1 - this.playerTurn];
 
-    const coordinate = await getMove(attacker, defender);
-    defender.gameboard.receiveAttack(coordinate);
+    if (defender.gameboard.receiveAttack(coordinate)) {
+      this.checkGameOver(defender);
 
-    this.checkGameOver(defender);
-
-    if (!this.isGameOver) {
-      if (this.playerTurn === 1) {
-        this.playerTurn = 0;
-      } else {
-        this.playerTurn = 1;
+      if (!this.isGameOver) {
+        if (this.playerTurn === 1) {
+          this.playerTurn = 0;
+        } else {
+          this.playerTurn = 1;
+        }
       }
     }
   }
 
   checkGameOver(defender) {
-    if (defender.gameboard.allShipsSunk()) {
+    if (defender.gameboard.allSunk()) {
       this.isGameOver = true;
       this.winner = this.players[this.playerTurn];
       this.gameOver();
