@@ -67,14 +67,6 @@ class Gameboard {
     return true;
   }
 
-  placeVertical(ship, coordinates) {
-    return this.placeShip(ship, coordinates, true);
-  }
-
-  placeHorizontal(ship, coordinates) {
-    return this.placeShip(ship, coordinates, false);
-  }
-
   receiveAttack([x, y]) {
     if (x < 0 || x > 9 || y < 0 || y > 9) {
       return false;

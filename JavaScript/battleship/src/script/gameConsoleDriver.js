@@ -10,14 +10,38 @@ async function playGame() {
 
   game.start();
 
+  console.log("Place carrier");
+  const carrierLocation = await playerCoordinates();
+  console.log("Place battleship");
+  const battleshipLocation = await playerCoordinates();
+  console.log("Place destroyer");
+  const destroyerLocation = await playerCoordinates();
+  console.log("Place submarine");
+  const submarineLocation = await playerCoordinates();
+  console.log("Place patrol boat");
+  const patrolBoatLocation = await playerCoordinates();
+
+  game.players[0].gameboard.placeShip(
+    game.players[0].gameboard.carrier,
+    carrierLocation,
+    false,
+  );
+  game.players[0].gameboard.placeShip(
+    game.players[0].gameboard.battleship,
+    battleshipLocation,
+  );
+  game.players[0].gameboard.placeShip(game.players[0].gameboard.destroyer);
+  game.players[0].gameboard.placeShip(game.players[0].gameboard.submarine);
+  game.players[0].gameboard.placeShip(game.players[0].gameboard.patrolBoat);
+
   while (game.isGameOver === false) {
     let move;
 
     if (game.playerTurn === 0) {
-      move = await playMove();
+      move = await playerCoordinates();
       game.turn(move);
     } else {
-      move = await computerMove(computerMoves);
+      move = await computerCoordinates(computerMoves);
       game.turn(move);
     }
 
@@ -28,8 +52,8 @@ async function playGame() {
   }
 }
 
-function playMove() {
-  const coordinates = prompt("Insert the atack coordinates: ");
+function playerCoordinates() {
+  const coordinates = prompt("Insert the coordinates: ");
 
   const x = coordinates.split(",")[0];
   const y = coordinates.split(",")[1];
@@ -37,7 +61,7 @@ function playMove() {
   return [Number(x), Number(y)];
 }
 
-function computerMove(attackedCoordinates = new Set()) {
+function computerCoordinates(attackedCoordinates = new Set()) {
   const boardSize = 10;
   let x, y, key;
 
