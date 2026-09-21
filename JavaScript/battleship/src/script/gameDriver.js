@@ -5,6 +5,8 @@ import { Game } from "./Game.js";
 const form = document.querySelector("form");
 const input = document.querySelector("input");
 const body = document.querySelector("body");
+const startButton = document.createElement("button");
+startButton.disabled = true;
 
 let vertical = false;
 let ship;
@@ -12,30 +14,42 @@ let coordinate;
 
 async function playGame(game) {
   game.start();
-  const tried = new Set();
+  let computerMoves = new Set();
+  let move = [];
 
   while (!game.isGameOver) {
     if (game.playerTurn === 0) {
       const id = await getPlayerCoordinates(game.players[1]);
-      console.log(id);
-      game.turn(id);
+      move = [id.charAt(0), id.charAt(2)];
+      console.log(move);
       console.log(game.players[0].gameboard.board);
+      game.turn(move);
     } else {
-      await new Promise((r) => setTimeout(r, 500));
-      game.turn(pickComputerMove(tried));
+      move = computerCoordinates(computerMoves);
+      game.turn(move);
     }
+    console.log(
+      `${game.players[game.playerTurn].playerName}'s getting attacked. Move: ${move}`,
+    );
   }
+
+  body.innerHTML = "";
+  const winner = document.createElement("h1");
+  winner.innerText = `winner: ${game.winner}`;
+  body.appendChild(winner);
 }
 
-function pickComputerMove(tried) {
+function computerCoordinates(attackedCoordinates = new Set()) {
+  const boardSize = 10;
   let x, y, key;
-  do {
-    x = Math.floor(Math.random() * 10);
-    y = Math.floor(Math.random() * 10);
-    key = `${x},${y}`;
-  } while (tried.has(key));
 
-  tried.add(key);
+  do {
+    x = Math.floor(Math.random() * boardSize);
+    y = Math.floor(Math.random() * boardSize);
+    key = `${x},${y}`;
+  } while (attackedCoordinates.has(key));
+
+  attackedCoordinates.add(key);
   return [x, y];
 }
 
@@ -88,6 +102,37 @@ async function placePlayerShips(p) {
   h3.innerText = "All ships placed";
   return;
 }
+
+function placeComputerShips(c) {
+  const b = c.gameboard;
+  const boardSize = 10;
+
+  const ships = [
+    b.carrier,
+    b.battleship,
+    b.destroyer,
+    b.submarine,
+    b.patrolBoat,
+  ];
+
+  for (const ship of ships) {
+    let placed = false;
+    let attempts = 0;
+
+    while (!placed) {
+      if (++attempts > 1000) {
+        throw new Error(
+          "Couldn't place a computer ship, check placeShip's return value",
+        );
+      }
+
+      const coor = computerCoordinates();
+      const isVertical = Math.random() < 0.5;
+
+      placed = b.placeShip(ship, coor, isVertical);
+    }
+  }
+}
 // BEFORE GAME PAGE LOAD
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -95,7 +140,6 @@ form.addEventListener("submit", (event) => {
   const draw = new renderGame();
   const player = new Player(input.value);
   const game = new Game(player);
-  const startButton = document.createElement("button");
 
   draw.eraseHTML(body);
   const boardDiv = draw.drawGameboard(player);
@@ -107,14 +151,16 @@ form.addEventListener("submit", (event) => {
   const computerDiv = draw.drawComputerSection(computer);
   computerDiv.appendChild(computerBoard);
 
+  startButton.innerText = "Start";
   startButton.addEventListener("click", () => {
     startButton.disabled = true;
+    document.querySelector("h3").remove();
     playGame(game);
   });
-
-  startButton.innerText = "Start";
   body.appendChild(startButton);
   body.appendChild(playerDiv);
   body.appendChild(computerDiv);
   placePlayerShips(player);
+  placeComputerShips(game.players[1]);
+  startButton.disabled = false;
 });

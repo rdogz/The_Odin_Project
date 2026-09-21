@@ -60,7 +60,6 @@ class renderGame {
   }
 
   drawShips(player) {
-    const board = player.gameboard;
     const playerDiv = document.querySelector(".playerDiv");
 
     const carrier = board.carrier;
