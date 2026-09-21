@@ -42,10 +42,12 @@ class Game {
   }
 
   checkGameOver(defender) {
-    if (defender.gameboard.allSunk()) {
-      this.isGameOver = true;
-      this.winner = this.players[this.playerTurn];
-      this.gameOver();
+    for (let i = 0; i < 2; i++) {
+      if (this.players[i].gameboard.allSunk()) {
+        this.winner = this.players[this.playerTurn];
+        this.isGameOver = true;
+        this.gameOver();
+      }
     }
   }
 

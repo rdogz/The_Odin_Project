@@ -2,7 +2,7 @@ import { Player } from "./Ship.js";
 import { Game } from "./Game.js";
 
 async function playGame() {
-  const playerName = prompt("Player name: ");
+  const playerName = await prompt("Player name: ");
   const player = new Player(playerName);
   let computerMoves = new Set();
 
@@ -10,29 +10,9 @@ async function playGame() {
 
   game.start();
 
-  console.log("Place carrier");
-  const carrierLocation = await playerCoordinates();
-  console.log("Place battleship");
-  const battleshipLocation = await playerCoordinates();
-  console.log("Place destroyer");
-  const destroyerLocation = await playerCoordinates();
-  console.log("Place submarine");
-  const submarineLocation = await playerCoordinates();
-  console.log("Place patrol boat");
-  const patrolBoatLocation = await playerCoordinates();
-
-  game.players[0].gameboard.placeShip(
-    game.players[0].gameboard.carrier,
-    carrierLocation,
-    false,
-  );
-  game.players[0].gameboard.placeShip(
-    game.players[0].gameboard.battleship,
-    battleshipLocation,
-  );
-  game.players[0].gameboard.placeShip(game.players[0].gameboard.destroyer);
-  game.players[0].gameboard.placeShip(game.players[0].gameboard.submarine);
-  game.players[0].gameboard.placeShip(game.players[0].gameboard.patrolBoat);
+  for (let i = 0; i < 2; i++) {
+    await placeAllShips(game.players[i]);
+  }
 
   while (game.isGameOver === false) {
     let move;
@@ -46,7 +26,7 @@ async function playGame() {
     }
 
     console.log(
-      `${game.players[game.playerTurn].player}'s getting attacked. Move: ${move}`,
+      `${game.players[game.playerTurn].playerName}'s getting attacked. Move: ${move}`,
     );
     console.log(game.players[game.playerTurn].gameboard.board);
   }
@@ -75,5 +55,33 @@ function computerCoordinates(attackedCoordinates = new Set()) {
   return [x, y];
 }
 
-playGame();
+async function placeAllShips(p) {
+  let coo = [];
+  if (p.playerName === "Computer") {
+    coo.push(computerCoordinates());
+    coo.push(computerCoordinates());
+    coo.push(computerCoordinates());
+    coo.push(computerCoordinates());
+    coo.push(computerCoordinates());
+  } else {
+    console.log("Place carrier:");
+    coo.push(await playerCoordinates());
+    console.log("Place battleship:");
+    coo.push(await playerCoordinates());
+    console.log("Place destroyer:");
+    coo.push(await playerCoordinates());
+    console.log("Place submarine:");
+    coo.push(await playerCoordinates());
+    console.log("Place patrol boat:");
+    coo.push(await playerCoordinates());
+  }
+
+  let i = 0;
+  p.gameboard.placeShip(p.gameboard.carrier, coo[i++], false);
+  p.gameboard.placeShip(p.gameboard.battleship, coo[i++]);
+  p.gameboard.placeShip(p.gameboard.destroyer, coo[i++]);
+  p.gameboard.placeShip(p.gameboard.submarine, coo[i++]);
+  p.gameboard.placeShip(p.gameboard.patrolBoat, coo[i++]);
+}
+
 export { playGame };

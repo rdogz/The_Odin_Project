@@ -120,8 +120,8 @@ class Gameboard {
 }
 
 class Player {
-  constructor(player = "computer") {
-    this.player = player;
+  constructor(player = "Computer") {
+    this.playerName = player;
     this.gameboard = new Gameboard();
   }
 }
