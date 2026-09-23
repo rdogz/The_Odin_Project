@@ -14,28 +14,49 @@ let coordinate;
 
 async function playGame(game) {
   game.start();
+  console.log(game);
+  const draw = new renderGame();
   let computerMoves = new Set();
   let move = [];
+  let moveResult = [];
+  let id = "";
 
   while (!game.isGameOver) {
     if (game.playerTurn === 0) {
-      const id = await getPlayerCoordinates(game.players[1]);
-      move = [id.charAt(0), id.charAt(2)];
-      console.log(move);
-      console.log(game.players[0].gameboard.board);
-      game.turn(move);
+      while (true) {
+        id = await getPlayerCoordinates(game.players[1]);
+        move = [id.charAt(0), id.charAt(2)];
+        moveResult = game.turn(move);
+        if (moveResult[0]) {
+          break;
+        }
+      }
+      draw.updateBoard(
+        `${game.players[game.playerTurn].playerName}:${id}`,
+        moveResult[1],
+      );
     } else {
-      move = computerCoordinates(computerMoves);
-      game.turn(move);
+      while (true) {
+        move = computerCoordinates(computerMoves);
+        moveResult = game.turn(move);
+        if (moveResult[0]) {
+          break;
+        }
+      }
+      draw.updateBoard(
+        `${game.players[game.playerTurn].playerName}:${move}`,
+        moveResult[1],
+      );
     }
     console.log(
-      `${game.players[game.playerTurn].playerName}'s getting attacked. Move: ${move}`,
+      `${game.players[game.playerTurn].playerName}'s getting attacked. Move: ${move}. Move result: ${moveResult[1]}`,
     );
   }
 
   body.innerHTML = "";
   const winner = document.createElement("h1");
-  winner.innerText = `winner: ${game.winner}`;
+  console.log(game.winner.playerName);
+  winner.innerText = `winner: ${game.winner.playerName}`;
   body.appendChild(winner);
 }
 
@@ -69,7 +90,7 @@ function getPlayerCoordinates(player) {
   });
 }
 
-async function placePlayerShips(p) {
+async function placePlayerShips(p, draw) {
   const b = p.gameboard;
   const playerDiv = document.querySelector(".playerDiv");
   const h3 = document.createElement("h3");
@@ -96,6 +117,7 @@ async function placePlayerShips(p) {
       placed = b.placeShip(ship, coor, vertical);
 
       if (!placed) h3.innerText = `Can't place the ${label} there, try again`;
+      draw.renderShip(ship, coor, vertical);
     }
   }
 
@@ -130,6 +152,7 @@ function placeComputerShips(c) {
       const isVertical = Math.random() < 0.5;
 
       placed = b.placeShip(ship, coor, isVertical);
+      console.log(ship);
     }
   }
 }
@@ -160,7 +183,7 @@ form.addEventListener("submit", (event) => {
   body.appendChild(startButton);
   body.appendChild(playerDiv);
   body.appendChild(computerDiv);
-  placePlayerShips(player);
+  placePlayerShips(player, draw);
   placeComputerShips(game.players[1]);
   startButton.disabled = false;
 });

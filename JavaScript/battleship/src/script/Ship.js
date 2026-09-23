@@ -77,7 +77,7 @@ class Gameboard {
 
     if (this.board[x][y] === 0) {
       this.board[x][y] = "m";
-      return true;
+      return "m";
     }
 
     switch (this.board[x][y]) {
@@ -98,11 +98,11 @@ class Gameboard {
         break;
 
       default:
-        return false;
+        throw new Error("wtf dude, how did this happen");
     }
 
     this.board[x][y] = "h";
-    return true;
+    return "h";
   }
 
   allSunk() {

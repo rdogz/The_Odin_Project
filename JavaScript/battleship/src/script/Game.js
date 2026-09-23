@@ -23,22 +23,27 @@ class Game {
   }
 
   turn(coordinate) {
-    if (!this.gameRunning) return;
+    if (!this.gameRunning) return [false, null];
 
     const attacker = this.players[this.playerTurn];
     const defender = this.players[1 - this.playerTurn];
+    const attackResult = defender.gameboard.receiveAttack(coordinate);
 
-    if (defender.gameboard.receiveAttack(coordinate)) {
-      this.checkGameOver(defender);
+    if (attackResult === "h" || attackResult === "m") {
+      this.checkGameOver(attacker);
 
       if (!this.isGameOver) {
         if (this.playerTurn === 1) {
           this.playerTurn = 0;
+          return [true, attackResult];
         } else {
           this.playerTurn = 1;
+          return [true, attackResult];
         }
       }
     }
+
+    return [true, attackResult];
   }
 
   checkGameOver(defender) {

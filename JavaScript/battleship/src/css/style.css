@@ -39,7 +39,7 @@ input {
 }
 
 .boardSquare:hover {
-  background-color: cyan;
+  border-color: cyan;
 }
 
 .playerDiv {
@@ -53,4 +53,12 @@ input {
   color: white;
   font-weight: bold;
   margin: 1rem;
+}
+
+.miss {
+  background-color: red;
+}
+
+.hit {
+  background-color: black;
 }

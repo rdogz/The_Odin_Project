@@ -14,6 +14,7 @@ class renderGame {
         const newSquare = document.createElement("div");
         newSquare.classList.add("boardSquare");
         newSquare.setAttribute("id", `${j},${i}`);
+        newSquare.classList.add(`${player.playerName}:${j},${i}`);
 
         newSquare.addEventListener("click", () => {
           let coordinate = [];
@@ -79,6 +80,49 @@ class renderGame {
     playerDiv.appendChild(destroyerButton);
     playerDiv.appendChild(submarineButton);
     playerDiv.appendChild(patrolBoatButton);
+  }
+
+  updateBoard(id, squareStatus) {
+    console.log(`id inside updateBoard: ${id}`);
+    console.log(typeof id);
+    const square = document.getElementsByClassName(id)[0];
+    console.log(square);
+
+    switch (squareStatus) {
+      case "m":
+        square.classList.add("miss");
+        break;
+      case "h":
+        square.classList.add("hit");
+    }
+  }
+  renderShip(ship, id, vertical) {
+    const x = id[0];
+    const y = id[1];
+    console.log(`x: ${x}`);
+    console.log(`y: ${y}`);
+    const square = document.getElementById(id);
+
+    if (vertical) {
+    } else {
+      switch (ship.initial) {
+        case "c":
+          console.log(ship.initial);
+          break;
+        case "h":
+          console.log(ship.initial);
+          break;
+        case "d":
+          console.log(ship.initial);
+          break;
+        case "s":
+          console.log(ship.initial);
+          break;
+        case "p":
+          console.log(ship.initial);
+          break;
+      }
+    }
   }
 }
 
