@@ -6,6 +6,18 @@ body {
   height: 100dvh;
 }
 
+h3 {
+  color: white;
+  align-self: center;
+  justify-self: center;
+}
+
+.mainDiv {
+  display: flex;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
 label {
   color: white;
 }
@@ -15,6 +27,9 @@ button {
   padding: 5px;
   background-color:;
   background-color: darkgreen;
+  max-width: 5rem;
+  align-self: center;
+  justify-self: center;
 }
 
 input {
@@ -49,7 +64,20 @@ input {
   flex-direction: column;
 }
 
+.computerDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .playerDiv h1 {
+  color: white;
+  font-weight: bold;
+  margin: 1rem;
+}
+
+.computerDiv h1 {
   color: white;
   font-weight: bold;
   margin: 1rem;

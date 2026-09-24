@@ -13,6 +13,7 @@ let ship;
 let coordinate;
 
 async function playGame(game) {
+  document.getElementById("placeShipMessage")?.remove();
   game.start();
   console.log(game);
   const draw = new renderGame();
@@ -93,7 +94,8 @@ async function placePlayerShips(game, p, draw) {
   const b = p.gameboard;
   const playerDiv = document.querySelector(".playerDiv");
   const h3 = document.createElement("h3");
-  playerDiv.appendChild(h3);
+  h3.id = "placeShipMessage";
+  body.appendChild(h3);
 
   const ships = [
     { ship: b.carrier, label: "carrier" },
@@ -123,7 +125,7 @@ async function placePlayerShips(game, p, draw) {
     }
   }
 
-  h3.innerText = "All ships placed";
+  h3.innerText = "All ships placed, you can start the game.";
   return;
 }
 
@@ -164,6 +166,8 @@ form.addEventListener("submit", async (event) => {
   const draw = new renderGame();
   const player = new Player(input.value);
   const game = new Game(player);
+  const gameDiv = document.createElement("div");
+  gameDiv.classList.add("mainDiv");
 
   draw.eraseHTML(body);
   const boardDiv = draw.drawGameboard(player);
@@ -182,8 +186,9 @@ form.addEventListener("submit", async (event) => {
     playGame(game);
   });
   body.appendChild(startButton);
-  body.appendChild(playerDiv);
-  body.appendChild(computerDiv);
+  gameDiv.appendChild(playerDiv);
+  gameDiv.appendChild(computerDiv);
+  body.appendChild(gameDiv);
   await placePlayerShips(game, player, draw);
   placeComputerShips(game.players[1]);
   startButton.disabled = false;
