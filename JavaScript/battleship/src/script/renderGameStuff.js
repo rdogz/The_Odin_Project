@@ -14,7 +14,9 @@ class renderGame {
         const newSquare = document.createElement("div");
         newSquare.classList.add("boardSquare");
         newSquare.setAttribute("id", `${j},${i}`);
-        newSquare.classList.add(`${player.playerName}:${j},${i}`);
+
+        newSquare.dataset.board = player.playerName;
+        newSquare.dataset.coord = `${j},${i}`;
 
         newSquare.addEventListener("click", () => {
           let coordinate = [];
@@ -82,47 +84,39 @@ class renderGame {
     playerDiv.appendChild(patrolBoatButton);
   }
 
-  updateBoard(id, squareStatus) {
-    console.log(`id inside updateBoard: ${id}`);
-    console.log(typeof id);
-    const square = document.getElementsByClassName(id)[0];
-    console.log(square);
+  updateBoard(boardName, coord, squareStatus) {
+    const square = document.querySelector(
+      `[data-board="${boardName}"][data-coord="${coord}"]`,
+    );
+    if (!square) return;
 
-    switch (squareStatus) {
-      case "m":
-        square.classList.add("miss");
-        break;
-      case "h":
-        square.classList.add("hit");
-    }
+    if (squareStatus === "m") square.className = "boardSquare miss";
+    else if (squareStatus === "h") square.className = "boardSquare hit";
   }
-  renderShip(ship, id, vertical) {
-    const x = id[0];
-    const y = id[1];
-    console.log(`x: ${x}`);
-    console.log(`y: ${y}`);
-    const square = document.getElementById(id);
+  renderShip(ship, id, vertical, boardName) {
+    const sizes = { c: 5, b: 4, d: 3, s: 3, p: 2 };
+    const size = sizes[ship.initial];
 
-    if (vertical) {
-    } else {
-      switch (ship.initial) {
-        case "c":
-          console.log(ship.initial);
-          break;
-        case "h":
-          console.log(ship.initial);
-          break;
-        case "d":
-          console.log(ship.initial);
-          break;
-        case "s":
-          console.log(ship.initial);
-          break;
-        case "p":
-          console.log(ship.initial);
-          break;
-      }
+    const [x, y] = id.split(",").map(Number);
+
+    // Collect every square first so a ship that runs off the board isn't half-painted
+    const squares = [];
+    for (let i = 0; i < size; i++) {
+      const squareId = vertical
+        ? `${x},${y - i}` // down the board (y=9 is the top row in your HTML)
+        : `${x + i},${y}`; // to the right
+
+      const square = document.querySelector(
+        `[data-board="${boardName}"][data-coord="${squareId}"]`,
+      );
+      if (!square) return false; // out of bounds
+      squares.push(square);
     }
+
+    squares.forEach((sq) => {
+      sq.classList.add("ship");
+    });
+    return true;
   }
 }
 

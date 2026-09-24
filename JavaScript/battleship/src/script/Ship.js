@@ -39,12 +39,10 @@ class Gameboard {
 
     if (
       startX < 0 ||
-      startX > 10 ||
-      endX < 0 ||
-      endX > 10 ||
+      startX > 9 ||
       startY < 0 ||
-      startY > 10 ||
-      endY < 0 ||
+      startY > 9 ||
+      endX > 10 ||
       endY > 10
     ) {
       return false;

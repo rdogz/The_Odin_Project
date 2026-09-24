@@ -27,23 +27,19 @@ class Game {
 
     const attacker = this.players[this.playerTurn];
     const defender = this.players[1 - this.playerTurn];
-    const attackResult = defender.gameboard.receiveAttack(coordinate);
+    const result = defender.gameboard.receiveAttack(coordinate);
 
-    if (attackResult === "h" || attackResult === "m") {
-      this.checkGameOver(attacker);
+    if (result === false) return [false, null]; // invalid or repeated
 
-      if (!this.isGameOver) {
-        if (this.playerTurn === 1) {
-          this.playerTurn = 0;
-          return [true, attackResult];
-        } else {
-          this.playerTurn = 1;
-          return [true, attackResult];
-        }
-      }
+    if (defender.gameboard.allSunk()) {
+      this.winner = attacker;
+      this.isGameOver = true;
+      this.gameRunning = false;
+    } else {
+      this.playerTurn = 1 - this.playerTurn;
     }
 
-    return [true, attackResult];
+    return [true, result, defender.playerName];
   }
 
   checkGameOver(defender) {

@@ -31,22 +31,21 @@ async function playGame(game) {
           break;
         }
       }
-      draw.updateBoard(
-        `${game.players[game.playerTurn].playerName}:${id}`,
-        moveResult[1],
-      );
+      draw.updateBoard(moveResult[2], id, moveResult[1]);
     } else {
       while (true) {
         move = computerCoordinates(computerMoves);
+        console.log(
+          `${game.players[game.playerTurn].playerName}| Move: ${move}`,
+        );
+        console.log(game);
         moveResult = game.turn(move);
         if (moveResult[0]) {
           break;
         }
       }
-      draw.updateBoard(
-        `${game.players[game.playerTurn].playerName}:${move}`,
-        moveResult[1],
-      );
+
+      draw.updateBoard(moveResult[2], move.join(","), moveResult[1]);
     }
     console.log(
       `${game.players[game.playerTurn].playerName}'s getting attacked. Move: ${move}. Move result: ${moveResult[1]}`,
@@ -90,7 +89,7 @@ function getPlayerCoordinates(player) {
   });
 }
 
-async function placePlayerShips(p, draw) {
+async function placePlayerShips(game, p, draw) {
   const b = p.gameboard;
   const playerDiv = document.querySelector(".playerDiv");
   const h3 = document.createElement("h3");
@@ -112,12 +111,15 @@ async function placePlayerShips(p, draw) {
 
       const id = await getPlayerCoordinates(p);
       const coor = [Number(id.charAt(0)), Number(id.charAt(2))];
-      console.log(ship);
-      console.log(coor);
-      placed = b.placeShip(ship, coor, vertical);
+      placed = b.placeShip(ship, coor, false);
+      console.log(`Ship: ${ship}, Coordinates: ${coor}`);
+      console.log(b);
 
-      if (!placed) h3.innerText = `Can't place the ${label} there, try again`;
-      draw.renderShip(ship, coor, vertical);
+      if (!placed) {
+        h3.innerText = `Can't place the ${label} there, try again`;
+      } else {
+        draw.renderShip(ship, `${coor}`, vertical, p.playerName);
+      }
     }
   }
 
@@ -127,7 +129,7 @@ async function placePlayerShips(p, draw) {
 
 function placeComputerShips(c) {
   const b = c.gameboard;
-  const boardSize = 10;
+  let computerPlaced = new Set();
 
   const ships = [
     b.carrier,
@@ -148,16 +150,15 @@ function placeComputerShips(c) {
         );
       }
 
-      const coor = computerCoordinates();
+      const coor = computerCoordinates(computerPlaced);
       const isVertical = Math.random() < 0.5;
 
       placed = b.placeShip(ship, coor, isVertical);
-      console.log(ship);
     }
   }
 }
 // BEFORE GAME PAGE LOAD
-form.addEventListener("submit", (event) => {
+form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   const draw = new renderGame();
@@ -183,7 +184,7 @@ form.addEventListener("submit", (event) => {
   body.appendChild(startButton);
   body.appendChild(playerDiv);
   body.appendChild(computerDiv);
-  placePlayerShips(player, draw);
+  await placePlayerShips(game, player, draw);
   placeComputerShips(game.players[1]);
   startButton.disabled = false;
 });

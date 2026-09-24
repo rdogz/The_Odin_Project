@@ -62,3 +62,7 @@ input {
 .hit {
   background-color: black;
 }
+
+.ship {
+  background-color: green;
+}
