@@ -56,8 +56,40 @@ button {
 .popup-modal.show {
   opacity: 100%;
   pointer-events: all;
+
+  animation-name: drop-down;
+  animation-duration: 1000ms;
+}
+
+.popup-modal.hide {
+  pointer-events: none;
+  animation: close-dd 1000ms forwards;
 }
 
 .backdrop.show {
   opacity: 30%;
+}
+
+@keyframes drop-down {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -200%);
+  }
+
+  to {
+    opacity: 100%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes close-dd {
+  from {
+    opacity: 100%;
+    transform: translate(-50%, -50%);
+  }
+
+  to {
+    opacity: 0%;
+    transform: translate(-50%, -200%);
+  }
 }
