@@ -1,5 +1,20 @@
 #root {
-  display: flex;
+  display: grid;
   justify-content: center;
   align-items: center;
+  grid-template-columns: 1fr;
+}
+
+.componentGeneral {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.componentGeneral div {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 2fr;
 }

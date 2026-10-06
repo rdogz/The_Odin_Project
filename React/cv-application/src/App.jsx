@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { RenderGeneralInfo } from "./components/general.jsx";
+import { RenderAll } from "./components/renderAll.jsx";
 
 function App() {
   return (
     <>
-      <RenderGeneralInfo />
+      <RenderAll />
     </>
   );
 }
